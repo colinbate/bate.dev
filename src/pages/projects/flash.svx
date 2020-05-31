@@ -1,0 +1,8 @@
++++
+title = "Flash"
+year = 2020
+stack = ["Svelte"]
+url = "https://flash.bate.dev"
+code = "https://github.com/colinbate/flash"
++++
+This is another project I created for my kids, and one which has a bit of a history.

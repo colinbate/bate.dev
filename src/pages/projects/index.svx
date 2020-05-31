@@ -1,0 +1,7 @@
++++
+title = "My Projects"
++++
+
+# {title}
+
+Perhaps this is the best way to build a site, using MDSveX and Routify.
