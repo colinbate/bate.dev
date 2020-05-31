@@ -5,7 +5,7 @@
     "dev": "run-p routify rollup",
     "dev-dynamic": "cross-env BUNDLING=dynamic npm run dev",
     "build": "npm run routify -- -b && rollup -c",
-    "serve": "spassr --serve-spa --serve-ssr",
+    "serve": "sirv -s",
     "export": "routify export",
     "build:docker": "npm run build && ./scripts/docker/docker-build.sh",
     "deploy:now": "cd scripts/now && npm run deploy",
@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@sveltech/routify": "^1.5.9",
+    "sirv-cli": "0.4.6",
     "svelte": "^3.20.1"
   }
 }

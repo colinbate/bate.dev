@@ -1,7 +1,13 @@
 +++
 title = "My Projects"
 +++
-
+<script>
+import ProjectCard from 'src/components/ProjectCard.svelte';
+</script>
 # {title}
 
 Perhaps this is the best way to build a site, using MDSveX and Routify.
+
+<ProjectCard title="Flash" />
+<ProjectCard title="Dice" />
+<ProjectCard title="Noah Bank" />
