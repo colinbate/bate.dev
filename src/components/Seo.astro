@@ -1,0 +1,38 @@
+---
+import { AstroSeo } from "@astrolib/seo";
+import { SITE_URL, SITE_TITLE } from '$data/constants';
+
+const { title, description, img } = Astro.props;
+---
+<AstroSeo
+  title={`${SITE_TITLE} | ${title}`}
+  description={ description || `The portfolio and developer blog of Colin Bate.`}
+  canonical={SITE_URL}
+  openGraph={{
+    url: SITE_URL,
+    title: SITE_TITLE,
+    description: description || `The portfolio and developer blog of Colin Bate.`,
+    images: [
+      {
+        url: `${SITE_URL}${img || `/og/colinbate-social.jpg`}`,
+        width: 1012,
+        height: 506,
+        alt: "Colin Bate dev social open graph",
+        type: "image/jpeg",
+      },
+      // {
+      //   url: "",
+      //   width: 4096,
+      //   height: 4096,
+      //   alt: "Twitter open graph",
+      //   type: "image/jpeg",
+      // },
+      { url: `${SITE_URL}${img || `/og/colinbate-social.jpg`}` },
+    ],
+    site_name: SITE_TITLE,
+  }}
+  twitter={{
+    handle: "@rhuvok",
+    cardType: "summary_large_image",
+  }}
+/>

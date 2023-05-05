@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/landing/Hero.astro";
+import EntriesThree from "../components/entries/EntriesThree.astro";
+import Seo from "$comp/Seo.astro";
+---
+
+<Seo title="Welcome"/>
+<BaseLayout>
+  <Hero />
+  <section>
+    <div class="max-w-6xl mx-auto px-8 py-12">
+      <div class="mt-6 gap-x-8 gap-y-24 grid grid-cols-2">
+        {
+          allPosts
+            .slice()
+            .map((post) => (
+              <EntriesThree
+                url={"/posts/" + post.slug}
+                title={post.data.title}
+                description={post.data.description}
+                alt={post.data.title}
+                pubDate={post.data.pubDate.toString().slice(0, 10)}
+                author={post.data.author}
+                image={post.data.image.url}
+              />
+            ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
