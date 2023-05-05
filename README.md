@@ -1,44 +1,45 @@
-# routify-starter
+# Astro & Tailwind CSS Starter Kit by lexingtonthemes.com
 
-Starter template for [Routify](https://github.com/sveltech/routify)
+## Template Integrations
+- @astrojs/tailwind - https://docs.astro.build/en/guides/integrations-guide/tailwind/
+- @astrojs/image - https://docs.astro.build/en/guides/integrations-guide/image/
+- @astrojs/sitemap - https://docs.astro.build/en/guides/integrations-guide/sitemap/
+- @astrojs/mdx - https://docs.astro.build/en/guides/markdown-content/
+- @astrojs/rss - https://docs.astro.build/en/guides/rss/
+- @astrojs/prism - https://docs.astro.build/en/reference/api-reference/#prism-
+- Astrolib SEO - https://github.com/onwidget/astrolib/tree/main/packages/seo
+- Astro compress - https://github.com/NikolaRHristov/astro-compress#readme
+## Template Structure
 
-### Get started
+Inside of your Astro project, you'll see the following folders and files:
 
-To use this starter run `npx @sveltech/routify init` in an empty folder.
+```
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-Alternatively, you can clone this repo.
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-### Npm scripts
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-| Syntax           | Description                                                                       |
-|------------------|-----------------------------------------------------------------------------------|
-| `dev`            | Development (port 5000)                                                           |
-| `dev-dynamic`    | Development with dynamic imports                                                  |
-| `build`          | Build a bundled app with SSR + prerendering and dynamic imports                   |
-| `serve`          | Run after a build to preview. Serves SPA on 5000 and SSR on 5005                  |
-| `deploy:*`       | Deploy to netlify or now                                                          |
-| `export`         | Create static pages from content in dist folder (used by `npm run build`)         |
+Any static assets, like images, can be placed in the `public/` directory.
 
-### SSR and pre-rendering
+## Commands
 
-SSR and pre-rendering are included in the default build process.
+All commands are run from the root of the project, from a terminal:
 
-`npm run deploy:(now|netlify)` will deploy the app with SSR and prerendering included.
+| Command                | Action                                           |
+| :--------------------- | :----------------------------------------------- |
+| `npm install`          | Installs dependencies                            |
+| `npm run dev`          | Starts local dev server at `localhost:3000`      |
+| `npm run build`        | Build your production site to `./dist/`          |
+| `npm run preview`      | Preview your build locally, before deploying     |
+| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro --help` | Get help using the Astro CLI                     |
 
-To render async data, call the `$ready()` helper whenever your data is ready.
-
-If $ready() is present, rendering will be delayed till the function has been called.
-
-Otherwise it will be rendered instantly.
-
-See [src/pages/example/api/[showId].svelte](https://github.com/sveltech/routify-starter/blob/master/src/pages/example/api/%5BshowId%5D.svelte) for an example.
-
-### Production
-
-* For SPA or SSR apps please make sure that url rewrite is enabled on the server.
-* For SPA redirect to `__dynamic.html`.
-* For SSR redirect to the lambda function or express server.
-
-### Issues?
-
-File on Github! See https://github.com/sveltech/routify/issues .
+## For more info
+Checkout Lexington's  [documentation](https://lexingtonthemes.com/documentation/quick-start/#file-structure)
