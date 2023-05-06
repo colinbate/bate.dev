@@ -14,7 +14,7 @@ const { title, description, img } = Astro.props;
     description: description || `The portfolio and developer blog of Colin Bate.`,
     images: [
       {
-        url: `${SITE_URL}${img || `/og/colinbate-social.jpg`}`,
+        url: `${SITE_URL}${img || `/og/bate-dev-social.jpg`}`,
         width: 1012,
         height: 506,
         alt: "Colin Bate dev social open graph",
@@ -27,7 +27,7 @@ const { title, description, img } = Astro.props;
       //   alt: "Twitter open graph",
       //   type: "image/jpeg",
       // },
-      { url: `${SITE_URL}${img || `/og/colinbate-social.jpg`}` },
+      // { url: `${SITE_URL}${img || `/og/bate-dev-social.jpg`}` },
     ],
     site_name: SITE_TITLE,
   }}

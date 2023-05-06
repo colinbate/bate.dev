@@ -1,13 +1,14 @@
 +++
-title = "Use Shiki to style code"
+title = "Reordering Mobile Editing Icons in LogSeq"
+slug = "logseq-mobile"
 author = "Colin Bate"
-description = "After learning some Astro, I couldn't stop!"
-pubDate = 2022-07-08T00:00:00Z
-tags = [ "responsive", "html", "UIUX", "Remix" ]
+description = "I found a way to avoid needing to constantly scroll sideways to access the icons I need."
+pubDate = 2023-05-05T12:00:00Z
+tags = [ "logseq", "css", "flex" ]
 
 [image]
-url = "/thumbnails/2.jpg"
-alt = "Thumbnails of websites from the Astro Showcase site."
+local = "./2023-05-05-logseq-mobile.jpg"
+alt = "Phone with LogSeq logo."
 +++
 It uses TextMate grammar to tokenize strings, and colors the tokens with VS Code themes. In short, Shiki generates HTML that looks exactly like your code in VS Code, and it works great in your static website generator.
 

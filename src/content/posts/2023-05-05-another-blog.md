@@ -1,11 +1,12 @@
 +++
-title = "Markdown style guide"
-pubDate = 2022-07-01T00:00:00Z
-description = "This is the first post of my new Astro blog."
+title = "Another blog!"
+slug = "another-blog"
+pubDate = 2023-05-05T06:00:00Z
+description = "This is the first post of my new dev blog."
 author = "Colin Bate"
-tags = ["javascript", "tailwind"]
+tags = ["astro", "tailwind"]
 [image]
-url = "/thumbnails/1.jpg"
+url = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80"
 alt = "Astro supports fast, automatic RSS feed generation."
 +++
 

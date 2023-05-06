@@ -9,14 +9,14 @@ mark {
 
 :root {
   --astro-code-color-text: #fff;
-  --astro-code-color-background: #18161a;
-  --astro-code-token-constant: #ffffff80;
-  --astro-code-token-string: #ffffff50;
-  --astro-code-token-comment: #ffffff60;
-  --astro-code-token-keyword: #ffffff;
-  --astro-code-token-parameter: #ffffff;
-  --astro-code-token-function: #ffffff70;
-  --astro-code-token-string-expression: #7977f2;
-  --astro-code-token-punctuation: #ffffff;
-  --astro-code-token-link: #ffffff;
+  --astro-code-color-background: #18181b;
+  --astro-code-token-constant: #c084fc;
+  --astro-code-token-string: #34d399;
+  --astro-code-token-comment: #a1a1aa;
+  --astro-code-token-keyword: #38bdf8;
+  --astro-code-token-parameter: #fb923c;
+  --astro-code-token-function: #f472b6;
+  --astro-code-token-string-expression: #34d399;
+  --astro-code-token-punctuation: #facc15;
+  --astro-code-token-link: #a5b4fc;
 }

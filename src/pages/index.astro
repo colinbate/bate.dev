@@ -21,10 +21,9 @@ import Seo from '$comp/Seo.astro';
                 url={"/posts/" + post.slug}
                 title={post.data.title}
                 description={post.data.description}
-                alt={post.data.title}
                 pubDate={post.data.pubDate.toString().slice(0, 10)}
                 author={post.data.author}
-                image={post.data.image.url}
+                image={post.data.image}
               />
             ))
         }
