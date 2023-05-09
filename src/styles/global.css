@@ -6,6 +6,10 @@ mark {
   @apply bg-accent-400 text-black;
 }
 
+.as-is img {
+  aspect-ratio: auto;
+}
+
 
 :root {
   --astro-code-color-text: #fff;

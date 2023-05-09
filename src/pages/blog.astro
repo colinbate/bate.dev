@@ -8,7 +8,20 @@ import Seo from "$comp/Seo.astro";
 
 <Seo title="Posts"/>
 <BaseLayout>
-  <h2 class="sr-only" id="header">Colin Bate's Posts</h2>
+  <h2 class="sr-only" id="header">Colin Bate's Posts</h2><div
+  class="max-w-6xl px-8 mx-auto py-12 lg:pt-28">
+  <div>
+    <h1
+      class="text-white mt-4 font-semibold text-5xl lg:text-8xl tracking-tighter">
+      Posts
+    </h1>
+    <div class="lg:mt-8 max-w-2xl">
+      <p class="text-lg lg:text-2xl text-white">
+        Read the things I am writing about. Bask in the geekiness.
+      </p>
+    </div>
+  </div>
+</div>
   <section>
     <div class="px-8 md:px-12 mx-auto max-w-7xl py-12 lg:py-32">
       <ul class="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-3 sm:gap-6">
@@ -20,10 +33,9 @@ import Seo from "$comp/Seo.astro";
                 url={"/posts/" + post.slug}
                 title={post.data.title}
                 description={post.data.description}
-                alt={post.data.title}
                 pubDate={post.data.pubDate.toString().slice(0, 10)}
                 author={post.data.author}
-                image={post.data.image.url}
+                image={post.data.image}
               />
             ))
         }
