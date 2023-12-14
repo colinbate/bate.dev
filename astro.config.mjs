@@ -25,7 +25,4 @@ export default defineConfig({
   },
   site: 'https://bate.dev',
   integrations: [mdx(), toml(), svelte(), tailwind(), compress(), sitemap()],
-  experimental: {
-    assets: true
-  },
 });
