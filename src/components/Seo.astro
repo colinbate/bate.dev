@@ -20,7 +20,7 @@ const image = img ?? defaultImage;
   canonical={SITE_URL}
   openGraph={{
     url: SITE_URL,
-    title: SITE_TITLE,
+    title: title ?? SITE_TITLE,
     description: description || `The portfolio and developer blog of Colin Bate.`,
     images: [
       {
