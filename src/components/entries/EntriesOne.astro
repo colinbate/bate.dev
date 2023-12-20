@@ -1,6 +1,6 @@
 ---
+import BlogImage from '$comp/BlogImage.astro';
 import type { CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
 type ImageType = CollectionEntry<'posts'>['data']['image']
 export type Props = {
   title: string;
@@ -16,8 +16,7 @@ const { title, url, description, pubDate, author, image } = Astro.props;
 
 <div class="w-full mx-auto h-full items-center">
   <a class="group" href={url} title={title}
-    >{image.url ? <img class="w-full aspect-square object-cover" src={image.url} alt={image.alt} /> :
-                  <Image src={image.local} alt={image.alt}/>}
+    ><BlogImage image={image} />
     <p class="mt-6 text-zinc-400 font-light text-xs">
       <time datetime={pubDate}>{pubDate}</time> by {author}
     </p>

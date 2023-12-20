@@ -1,10 +1,15 @@
 ---
+import BlogImage from "$comp/BlogImage.astro";
 import Seo from "$comp/Seo.astro";
 import BaseLayout from "./BaseLayout.astro";
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  frontmatter: CollectionEntry<'posts'>['data'];
+}
 const { frontmatter } = Astro.props;
 ---
 
-<Seo title={frontmatter.title} description={frontmatter.description}/>
+<Seo title={frontmatter.title} description={frontmatter.description} img={frontmatter.image.local}/>
 <BaseLayout>
   <section class="overflow-hidden relative bg-black">
     <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
@@ -28,7 +33,12 @@ const { frontmatter } = Astro.props;
             ))
           }
         </div>
-        <div class="border-t border-white/20 max-w-prose"><slot /></div>
+        <div class="border-t border-white/20 flex flex-col gap-4 xl:flex-row">
+          <div class="xl:order-1 not-prose max-w-prose pt-8">
+            <BlogImage image={frontmatter.image} />
+          </div>
+          <div class="max-w-prose"><slot /></div>
+        </div>
       </div>
     </div>
   </section>

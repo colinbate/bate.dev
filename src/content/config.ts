@@ -27,7 +27,7 @@ const postsCollection = defineCollection({
       url: z.string().optional(),
       local: image().optional(),
       alt: z.string()
-    }),
+    }).refine((img => img.local || img.url)),
   }),
  });
 
