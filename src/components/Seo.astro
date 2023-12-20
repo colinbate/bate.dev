@@ -24,7 +24,7 @@ const image = img ?? defaultImage;
     description: description || `The portfolio and developer blog of Colin Bate.`,
     images: [
       {
-        url: image.src,
+        url: `${SITE_URL}${image.src}`,
         width: image.width,
         height: image.height,
         alt: "Colin Bate dev social open graph",
