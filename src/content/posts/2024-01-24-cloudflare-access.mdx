@@ -1,0 +1,25 @@
++++
+title = "Cloudflare Access"
+slug = "cloudflare-access"
+author = "Colin Bate"
+description = "I discuss Cloudflare's Zero Trust Network Access as an option for adding simple and free authentication to your hobby projects."
+pubDate = 2024-01-24T12:00:00Z
+tags = [ "dev", "auth", "cloudflare" ]
+
+[image]
+local = "./2024-01-24-cloudflare-access.jpg"
+alt = "A muscled, headless superhero clad in orange with a padlock on its chest and an orange cloud behind it."
++++
+It is no secret that I am a big fan of Cloudflare. Their developer products are well-designed, and they have a generous free offering.
+
+If you have yet to learn about their Workers, Pages, R2, or Durable Objects offerings, you may have heard of or used Cloudflare as a DNS or SSL provider. It wasn't that long ago that they were the best free way to protect your site behind SSL.
+
+Many developers may not be as familiar with their offerings targeted at corporate clients. For example, they have tools for allowing employees to securely access corporate resources from the open Internet. Part of that collection of tools is [Zero Trust Network Access](https://www.cloudflare.com/zero-trust/products/access/). It lets you set up a 'layer' in front of your apps to authenticate users before they get to your applications. It can integrate third-party identity providers via various mechanisms like SAML or OAuth2, but importantly, it also has a built-in emailed code login flow.
+
+This all sounds handy, but another critical piece of information is that this service is free for up to 50 users.
+
+What this means as a hobby developer, especially one creating tools for a limited set of users, is that you can use this as a simple and free authentication mechanism. This is particularly appealing if you are already using other Cloudflare offerings. Cloudflare Pages has a middleware plugin that validates the token that Access passes through. All you need to do to protect your applications with this is have Cloudflare manage the DNS for the domain.
+
+Yes, there are other services for providing authentication, some with even more generous free tiers. And if you plan on allowing the public to sign up for your application, those would be better options. However, this is a straightforward and powerful option if you have a small group of users that you can predefine explicitly or by email domain. I was able to stand it up for a SvelteKit app in about an hour.
+
+I will post more details with some code snippets once I get further along with the app I'm working on.
