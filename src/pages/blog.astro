@@ -22,7 +22,7 @@ import Seo from "$comp/Seo.astro";
     </div>
   </div>
 </div>
-  <section>
+  <section class="h-feed">
     <div class="px-8 md:px-12 mx-auto max-w-7xl py-12 lg:py-32">
       <ul class="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-3 sm:gap-6">
         {
@@ -33,7 +33,7 @@ import Seo from "$comp/Seo.astro";
                 url={"/posts/" + post.slug}
                 title={post.data.title}
                 description={post.data.description}
-                pubDate={post.data.pubDate.toString().slice(0, 10)}
+                pubDate={post.data.pubDate}
                 author={post.data.author}
                 image={post.data.image}
               />
