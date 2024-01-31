@@ -8,6 +8,6 @@ interface Props {
 import defaultThumb from '$asset/blog-thumb.jpg';
 const { image } = Astro.props;
 ---
-{image.url ? <img class="w-full aspect-square object-cover" src={image.url} alt={image.alt} /> :
-      (image.local ? <Image class="w-full aspect-square object-cover" src={image.local} alt={image.alt}/> :
-                     <Image class="w-full aspect-square object-cover" src={defaultThumb} alt="Collection of tech icons on a blue background" />)}
+{image.url ? <img class="u-featured w-full aspect-square object-cover" src={image.url} alt={image.alt} /> :
+      (image.local ? <Image class="u-featured w-full aspect-square object-cover" src={image.local} alt={image.alt}/> :
+                     <Image class="u-featured w-full aspect-square object-cover" src={defaultThumb} alt="Collection of tech icons on a blue background" />)}
