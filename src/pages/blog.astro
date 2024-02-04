@@ -28,6 +28,7 @@ import Seo from "$comp/Seo.astro";
         {
           allPosts
             .slice()
+            .reverse()
             .map((post) => (
               <EntriesOne
                 url={"/posts/" + post.slug}

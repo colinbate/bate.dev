@@ -1,5 +1,6 @@
 ---
 import BlogImage from '$comp/BlogImage.astro';
+import PostTime from '$comp/PostTime.astro';
 import type { CollectionEntry } from 'astro:content';
 type ImageType = CollectionEntry<'posts'>['data']['image']
 export type Props = {
@@ -15,10 +16,10 @@ const { title, url, description, pubDate, author, image } = Astro.props;
 ---
 
 <div class="h-entry w-full mx-auto h-full items-center">
-  <a class="u-url group" href={url} title={title}
-    ><BlogImage image={image} />
+  <a class="u-url block group" href={url} title={title}>
+    <BlogImage image={image} />
     <p class="mt-6 text-zinc-400 font-light text-xs">
-      <time datetime={pubDate.toISOString()}>{pubDate.toString().slice(0, 10)}</time> by <a class="p-author h-card" href="https://colinbate.com/">{author}</a>
+      <PostTime pubDate={pubDate} /> by <data class="p-author h-card" value="https://colinbate.com/">{author}</data>
     </p>
     <p
       class="p-name text-white font-medium mt-3 group-hover:text-accent-400 text-xl lg:text-xl">
