@@ -1,0 +1,23 @@
++++
+title = "Maelstrom"
+slug = "maelstrom"
+author = "Colin Bate"
+description = "I discuss building an IndieAuth endpoint."
+pubDate = 2024-02-08T12:00:00Z
+tags = [ "dev", "auth", "indieweb" ]
+
+[image]
+local = "./2024-02-08-maelstrom.jpg"
+alt = "A black and white line drawing of a swirling circle around a padlock."
++++
+In my last post, I mentioned looking at CloudFlare Access. I am using it as an authentication mechanism for my IndieAuth implementation. Great, but what is this IndieAuth you mention? That is a good question, as I only learned about it recently when I started researching the details of Micropub.
+
+I should also elaborate on Micropub, a protocol for creating and managing published website entries. A site can annotate itself with a Micropub endpoint, and any compatible client software can use that endpoint to publish content. The mechanism client software uses to authenticate a user with that Micropub endpoint is called IndieAuth.
+
+That said, IndieAuth is essentially an extension of OAuth2. However, there is one primary difference. With OAuth2, a relationship exists between the client software creator and the identity provider. In the IndieWeb world, any given site may roll its own identity provider, as I am attempting to do, so an arbitrary client should work with an arbitrary provider. In this case, the relationship exists between the identity provider and the Micropub endpoint it is protecting.
+
+Maelstrom is the IndieAuth implementation I'm creating. It complements a Micropub implementation I also want to make called Tempest. In the future, this site may have some metadata in the HTML pointing to Tempest as an API and Maelstrom as its auth server. A client tool would be pointed at this site, find that metadata, and start a flow with Maelstrom to ensure I am the one using it. The client app would redirect the user (hopefully me) to Maelstrom, asking me if I'm fine allowing that client access to my endpoint. If I say yes, then it grants a token to the client that can be sent to Tempest as proof I am me. In this scenario, Tempest knows Maelstrom and trusts that I can authenticate using it.
+
+It has been a fun exercise to work on. I've been using SvelteKit with CloudFlare Pages, focusing on the server-side aspects of SvelteKit. I am awaiting an upcoming change in the CloudFlare adapter for SvelteKit that should make apps with bindings defined easier to develop.
+
+Once there is something functional to see, I'll post a link.
