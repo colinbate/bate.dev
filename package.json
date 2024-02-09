@@ -1,7 +1,7 @@
 {
   "name": "bate.dev",
   "type": "module",
-  "version": "2023.12.20",
+  "version": "2024.02.03",
   "private": true,
   "scripts": {
     "dev": "astro dev",

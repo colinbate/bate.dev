@@ -1,0 +1,12 @@
+---
+export type Props = {
+  pubDate: Date;
+  class?: string;
+};
+
+const { pubDate, ...rest } = Astro.props;
+const raw = pubDate.toISOString();
+const now: Date = new Date();
+const display = pubDate.toString().slice(0,  pubDate.getFullYear() === now.getFullYear() ? 10 : 15);
+---
+<time {...rest} datetime={raw}>{display}</time>

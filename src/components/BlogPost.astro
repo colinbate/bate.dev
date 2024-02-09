@@ -1,8 +1,17 @@
 ---
-const { title, url } = Astro.props;
----
+import PostTime from './PostTime.astro';
 
-<a
-  class="text-white inline-flex items-center w-full mt-4 font-semibold text-5xl lg:text-6xl tracking-tighter hover:text-accent-300 underline"
-  href={url}>{title}</a
->
+export type Props = {
+  title: string;
+  url: string;
+  pubDate: Date;
+};
+const { title, url, pubDate } = Astro.props;
+---
+<div class="flex flex-col lg:flex-row gap-2 lg:gap-8 lg:items-baseline">
+  <a
+    class="text-white inline-flex items-center mt-4 font-semibold text-5xl lg:text-6xl tracking-tighter hover:text-accent-300 underline"
+    href={url}>{title}</a
+  >
+  <PostTime pubDate={pubDate} class="text-2xl text-white/70 min-w-48" />
+</div>

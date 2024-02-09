@@ -2,26 +2,31 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogPost from "../../components/BlogPost.astro";
 import { getCollection } from "astro:content";
+import Project from "$comp/Project.astro";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("posts");
+  const allProjects = await getCollection('projects');
+  const postTags = allPosts.map((post) => post.data.tags).flat();
+  const projTags = allProjects.map(proj => proj.data.tags).flat();
   const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+    ...new Set(postTags.concat(projTags)),
   ];
 
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter((post) =>
       post.data.tags.includes(tag)
     );
+    const filteredProjs = allProjects.filter(proj => proj.data.tags.includes(tag));
     return {
       params: { tag },
-      props: { posts: filteredPosts },
+      props: { posts: filteredPosts, projects: filteredProjs },
     };
   });
 }
 
 const { tag } = Astro.params;
-const { posts } = Astro.props;
+const { posts, projects } = Astro.props;
 ---
 
 <BaseLayout pageTitle={tag}>
@@ -30,31 +35,39 @@ const { posts } = Astro.props;
       <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
         <h1
           class="text-white mt-4 font-semibold text-5xl lg:text-8xl tracking-tighter">
-          Blog posts tagged with <span class="text-accent-200">{tag}</span>
+          Tagged <span class="text-accent-200">{tag}</span>
         </h1>
       </div>
     </div>
   </section>
+  {posts.length &&
   <section>
     <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
+      <h2 class="text-white font-semibold text-4xl tracking-tighter border-b border-accent-300 pb-5 mb-6">Posts</h2>
       <ol role="list" class="space-y-3">
-        <li>
-          <ol role="list">
-            {
-              posts.map((post) => (
-                <li aria-label="#">
-                  <span>
-                    <BlogPost
-                      url={"/posts/" + post.slug}
-                      title={post.data.title}
-                    />
-                  </span>
-                </li>
-              ))
-            }
-          </ol>
-        </li>
+      {
+        posts.map((post) => (
+          <li aria-label="#">
+            
+              <BlogPost
+                url={"/posts/" + post.slug}
+                title={post.data.title}
+                pubDate={post.data.pubDate}
+              />
+            
+          </li>
+        ))
+      }
       </ol>
     </div>
-  </section>
+  </section>}
+  {projects.length &&
+  <section>
+    <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
+      <h2 class="text-white font-semibold text-4xl tracking-tighter border-b border-accent-300 pb-5 mb-6">Projects</h2>
+      <div class="space-y-6 max-w-5xl">
+        {projects.map(proj => <Project proj={proj} />)}
+      </div>
+    </div>
+  </section>}
 </BaseLayout>

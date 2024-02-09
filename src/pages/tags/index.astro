@@ -3,7 +3,13 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Seo from "$comp/Seo.astro";
 const allPosts = await getCollection("posts");
-const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+const allProjects = await getCollection('projects');
+const postTags = allPosts.map((post) => post.data.tags).flat();
+const projTags = allProjects.map(proj => proj.data.tags).flat();
+const tags = postTags.concat(projTags).toSorted().reduce((p, c) => {
+  p[c] = (p[c] ?? 0) + 1;
+  return p;
+}, {} as Record<string, number>);
 const pageTitle = "Tag Index";
 ---
 <Seo title="Tags"/>
@@ -21,18 +27,19 @@ const pageTitle = "Tag Index";
   </section>
   <section>
     <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
-      <div class="space-y-3">
+      <div class="flex flex-wrap gap-6">
         {
-          tags.map((tag) => (
-            <div>
-              <p>
-                <a
-                  class="text-white inline-flex items-center w-full mt-4 font-semibold text-5xl lg:text-6xl tracking-tighter hover:text-accent-300 underline"
-                  href={`/tags/${tag}`}>
-                  {tag}
-                </a>
-              </p>
-            </div>
+          Object.entries(tags).map(([tag, count]) => (
+            <a class="isolate inline-flex rounded-md shadow-sm shadow-accent-400 group" href={`/tags/${tag}`}>
+              <span class="relative inline-flex items-center gap-x-1.5 rounded-l-md bg-gray-800 px-4 py-2 text-lg font-semibold text-gray-100 group-hover:text-accent-300 ring-1 ring-inset ring-gray-300 group-hover:ring-accent-300 group-hover:bg-gray-900 focus:z-10">
+                <svg viewBox="0 0 20 20" fill="currentColor" class="-ml-0.5 w-5 h-5 text-gray-400 group-hover:text-accent-500/70">
+                  <path fill-rule="evenodd" d="M4.5 2A2.5 2.5 0 0 0 2 4.5v3.879a2.5 2.5 0 0 0 .732 1.767l7.5 7.5a2.5 2.5 0 0 0 3.536 0l3.878-3.878a2.5 2.5 0 0 0 0-3.536l-7.5-7.5A2.5 2.5 0 0 0 8.38 2H4.5ZM5 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+                </svg>
+
+                {tag}
+              </span>
+              <span class="relative -ml-px inline-flex items-center rounded-r-md bg-gray-800 px-4 py-2 text-lg font-semibold text-gray-100 group-hover:text-accent-300 ring-1 ring-inset ring-gray-300 group-hover:ring-accent-300 group-hover:bg-gray-900 focus:z-10">{count}</span>
+            </a>
           ))
         }
       </div>
