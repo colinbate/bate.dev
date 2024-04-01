@@ -1,0 +1,26 @@
++++
+title = "Reviving Yearlings"
+slug = "reviving-yearlings"
+author = "Colin Bate"
+description = "Rebooting a game I wrote 27 years ago."
+pubDate = 2024-03-31T12:00:00Z
+tags = [ "dev", "svelte", "rpg" ]
+
+[image]
+local = "./2024-03-31-reviving-yearlings.jpg"
+alt = "An epic ancient tree with the sun setting behind it, the sky is full of computer code."
++++
+Approximately 27 years ago, in 1997, I developed a modest RPG named Yearlings, using CorelScript—a macro or automation language for CorelDRAW and WordPerfect. My recollection of its details is a bit hazy, but I crafted the game through this language, utilizing dialogues and modal windows to create a text-based RPG experience. Players were presented with choices through various buttons, navigating scenes and options in a game that, while simple, offered a basic level-up system, weapon and armor purchases, and monster battles across different areas. Despite its simplicity and clunkiness, the game was engaging and functional, albeit with a limited capacity for saving game progress, involving a download/upload system for game files.
+
+Fast forward to 2014 when I rediscovered the game's code and, feeling more "seasoned" and "knowledgeable," decided to modernize it for the web. I rewrote it using Angular 1, maintaining its core essence while updating its mechanics for a web application. This version eliminated the need for the original's cumbersome save system, instead incorporating local storage to provide "save slots."
+
+Over the years, I've revisited and refined this web version, even integrating a dark mode feature. Recently, my 11-year-old son discovered the game and, after playing through it, has shown interest in expanding on it. He wants to create additional creatures, locations, and an expanded storyline and has asked me to add a map screen as well. Motivated by his enthusiasm, I plan to undertake another rewrite using SvelteKit, potentially incorporating a database backend. Unlike last time, this isn't going to be a simple port but rather a spiritual successor. A reboot, perhaps. It will maintain some of its old-school charm, but I'd like to bring some of my more recent TTRPG experience into it, add some mechanics, and, as mentioned, make it a bit more visual with maps and images.
+
+With that in mind, I decided it should have a new name, and the working title is **Eldergrove**.
+
+Although work has kept me busy lately, I hope my son will motivate me to keep progressing. I suspect it will have been more work than I initially pictured by the time we finish. But that is part of the experience. We will develop it in the open, and you can [find the code on GitHub][1] (once there is some). You can also [play Yearlings online][2] or [check out its code][3]. And if you are interested in the original CorelScript version, it is also [in the Yearlings repo][4].
+
+[1]: https://github.com/ttrpgtools/eldergrove
+[2]: https://yearlings.bate.dev/
+[3]: https://github.com/colinbate/yearlings
+[4]: https://github.com/colinbate/yearlings/blob/master/original/yearling.CSC
