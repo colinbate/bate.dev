@@ -1,0 +1,76 @@
++++
+title = "Eldergrove Update"
+slug = "eldergrove-update"
+author = "Colin Bate"
+description = "Going retro with the help of cutting edge technology."
+pubDate = 2024-04-16T12:00:00Z
+tags = [ "dev", "svelte", "rpg", "game" ]
+
+[image]
+local = "./2024-04-16-eldergrove-update.jpg"
+alt = "A pixel art rendering of a small chunk of land with some trees on it."
++++
+First off, apologies for not making an update sooner. I said I wanted to develop this game in the open, but I spent over two weeks doing the exact opposite, working entirely on my laptop without sharing any code or ideas. I'm here now trying to rectify that. As of today, I have published the code to the GitHub repository I mentioned last time, [which I will link again][1]. I have also [deployed the game][2] for you to see and test. It is very rough at this stage and not fully operational, but something exists. You can click around a few of the buttons to see what I've got so far.
+
+There have been numerous iterations, both on the UI and some core mechanisms and coding ideas. I think I've stabilized on something I like and that I will be able to extend going forward. The good part about what I have at the moment is the clear separation between the game content—like locations, items, and NPCs—and the mechanics of the game engine. This separation should allow my son and me to grow and extend the game, starting with our V1, and then adding more content and adventures over time.
+
+It has been an interesting experience so far. I've been back and forth between different ideas, trying to find decent solutions when I think of new problems. The development has been a bit chaotic if I'm honest. Which was one reason it took so long to 'emerge from under my rock'. I'm using GitHub Projects to track a list of items I want to work on. It's not comprehensive, but it serves as a guide whenever I get a chance to work on the project. As expected, this has consumed most of my spare time, which would otherwise have gone to other projects. That's the joy of personal projects, I have the freedom to decide that. My son has enjoyed brainstorming new ideas and helping create visuals for these ideas.
+
+One thing to note is that this game makes extensive use of AI-generated art. I've used it to create all the images in the game, which is obviously a notable difference from the original text-based version. This version aims to add visual richness to the experience while maintaining an old-school feel, inspired by classic NES-era games like Final Fantasy I, my all-time favorite game. Underneath, I'm trying to incorporate some tabletop RPG mechanics to see how they might translate to a video game scenario. I'm using my work with [Brighter Worlds][4] as inspiration for this.
+
+One crossover I have is that I've started using dice formula for things like attacks, damage and encounter tables. This is my code for rolling a simple formula which typically is a string in the form `NdF + M`, where `N` is the number of dice with `F` faces (aka. sides) and `M` is a modifier to add to it. So `2d6` would roll two six-sided dice and sum the result.
+
+```ts
+function parseFactor(factor: string) {
+  if (!factor) return 0;
+  const neg = factor.at(0) === '-';
+  if (neg) factor = factor.substring(1);
+  const [count, sides] = factor.split('d');
+  if (!sides) return 0;
+  const value =
+    rolls(
+      parseInt(sides, 10),
+      parseInt(count || '1', 10)
+    ).reduce((p, c) => p + c, 0) *
+    (neg ? -1 : 1);
+  return value;
+}
+
+function parseTerm(term: string) {
+  if (!term) return 0;
+  const factors = term.split('*');
+  // Multiply the factors together: eg. 2*d10
+  const value = factors.reduce(
+    (p, c) => p * (isNumeric(c) ? parseInt(c, 10) : parseFactor(c)),
+    1
+  );
+  return value;
+}
+
+/**
+ * Rolls dice as defined by the provided dice formula,
+ * returning the total.
+ * @param formula A simple dice formula.
+ */
+export function rollFormula(formula: string) {
+  if (!formula) return 0;
+  const terms = formula
+      .replace(/\s/g, '')
+      .replace(/(\d)-/g, '$1+-')
+      .split('+');
+  // This just adds the parsed terms together.
+  const value = terms.reduce((p, c) => p + parseTerm(c), 0);
+  return value;
+}
+```
+
+Note that the `rolls` and `isNumeric` functions above are my own. The former returns an array of random results, and the latter just checks if the string only contains digits.
+
+I hope you can follow the repository, give it a star, and keep up with the changes. I'm now set up for automatic deployments, so you should see updates as they happen. Please bear in mind that the deployed version is not stable and may break occasionally. If you want to provide feedback, I welcome it through the repository [issues][5] or [discussions][6]. I hope you've enjoyed what I've done so far; I've certainly enjoyed working on it and hope it brings some fun and enjoyment.
+
+[1]: https://github.com/ttrpgtools/eldergrove
+[2]: https://eldergrove.pages.dev/
+[3]: https://github.com/orgs/ttrpgtools/projects/3/views/3
+[4]: https://www.brighterworldsrpg.com/
+[5]: https://github.com/ttrpgtools/eldergrove/issues
+[6]: https://github.com/ttrpgtools/eldergrove/discussions
