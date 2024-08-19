@@ -18,8 +18,8 @@ const { title, url, description, pubDate, author, image } = Astro.props;
 <div class="h-entry w-full mx-auto h-full items-center">
   <a class="u-url block group" href={url} title={title}>
     <BlogImage image={image} />
-    <p class="mt-6 text-zinc-400 font-light text-xs">
-      <PostTime pubDate={pubDate} /> by <data class="p-author h-card" value="https://colinbate.com/">{author}</data>
+    <p class="mt-6 text-zinc-400 font-light text-xs flex gap-1">
+      <PostTime pubDate={pubDate} /><span>by</span><data class="p-author h-card" value="https://colinbate.com/">{author}</data>
     </p>
     <p
       class="p-name text-white font-medium mt-3 group-hover:text-accent-400 text-xl lg:text-xl">
