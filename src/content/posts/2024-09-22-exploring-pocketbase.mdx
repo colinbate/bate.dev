@@ -1,0 +1,28 @@
++++
+title = "Exploring PocketBase"
+slug = "exploring-pocketbase"
+author = "Colin Bate"
+description = "Deploying a tiny API with this convenient, all-in-one backend."
+pubDate = 2024-09-22T12:00:00Z
+tags = [ "dev", "api", "pocketbase" ]
+
+[image]
+local = "./2024-09-22-exploring-pocketbase.jpg"
+alt = "A blue gopher in overalls and shirt and tie walking with a phone and carrying a cylinder with the word DATA on it."
++++
+I recently deployed my first PocketBase API, and I found the process to be surprisingly straightforward. Currently, it consists of a few tables with minimal data that I'm manually entering through the admin UI and exposing via REST endpoints. My next step is to create a simple UI to manipulate this data more easily, especially on mobile devices.
+
+The API's primary purpose is to manage signups for my Movember charity games. I needed a way to indicate the number of remaining seats for each date. Previously, I'd update these values directly in GitHub and redeploy the site, which worked but was cumbersome on mobile. I wanted a more phone-friendly solution.
+
+I considered various options, including hosted database products and Cloudflare, as the data volume is minimal - just five dates and their associated numbers. I needed a solution that would allow the page to fetch this data at runtime. While there were other potential solutions like JSON stores or data buckets that could have sufficed given the low traffic volume, I decided to try PocketBase as it had been on my to-do list for a while.
+
+PocketBase proved to be an excellent fit. It allowed me to set up the data easily and hosted the SQLite tables for me. The deployment process was straightforward - I simply copied the files to my VPS, which I already use for hosting my VTT app. I set it up behind Caddy as a reverse proxy, leveraging my existing server configuration.
+
+The entire process, from setup to deployment, took about an hour. Most of that time was spent updating my VPS, which needed some maintenance. The API setup itself was minimal, involving no actual development - just adding data and running it on the server.
+
+My next steps include creating a development UI to easily tweak the data. In the future, I may even implement a feature allowing users to sign up for games directly on the site through a registration form. This would allow me to approve registrations and automatically allocate seats for the games.
+
+Overall, this project with PocketBase has been a smooth and educational experience, providing a simple solution for my charity game management needs while allowing room for future enhancements.
+
+
+[1]: https://pocketbase.io/
