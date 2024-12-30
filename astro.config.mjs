@@ -5,18 +5,11 @@ import tailwind from "@astrojs/tailwind";
 import compress from "astro-compress";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
-import toml from './toml-content';
 
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkTomlFrontmatter from './remark-astro-toml-frontmatter';
 export default defineConfig({
   markdown: {
     drafts: true,
     shikiConfig: { theme: "css-variables" },
-    remarkPlugins: [
-      [remarkFrontmatter, 'toml'],
-      remarkTomlFrontmatter,
-    ],
   },
   shikiConfig: {
     wrap: true,
@@ -24,5 +17,5 @@ export default defineConfig({
     drafts: true,
   },
   site: 'https://bate.dev',
-  integrations: [mdx(), toml(), svelte(), tailwind(), compress(), sitemap()],
+  integrations: [mdx(), svelte(), tailwind(), compress(), sitemap()],
 });

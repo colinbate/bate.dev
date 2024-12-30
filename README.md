@@ -1,14 +1,5 @@
-# Astro & Tailwind CSS Starter Kit by lexingtonthemes.com
+# Bate.dev
 
-## Template Integrations
-- @astrojs/tailwind - https://docs.astro.build/en/guides/integrations-guide/tailwind/
-- @astrojs/image - https://docs.astro.build/en/guides/integrations-guide/image/
-- @astrojs/sitemap - https://docs.astro.build/en/guides/integrations-guide/sitemap/
-- @astrojs/mdx - https://docs.astro.build/en/guides/markdown-content/
-- @astrojs/rss - https://docs.astro.build/en/guides/rss/
-- @astrojs/prism - https://docs.astro.build/en/reference/api-reference/#prism-
-- Astrolib SEO - https://github.com/onwidget/astrolib/tree/main/packages/seo
-- Astro compress - https://github.com/NikolaRHristov/astro-compress#readme
 ## Template Structure
 
 Inside of your Astro project, you'll see the following folders and files:

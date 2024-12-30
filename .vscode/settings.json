@@ -1,4 +1,3 @@
 {
-    "window.title": "${activeEditorShort}${separator}${rootName}${separator} [Branch: main]",
     "mdx.server.enable": false
 }

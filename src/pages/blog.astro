@@ -4,6 +4,7 @@ const allPosts = await getCollection("posts");
 import BaseLayout from "../layouts/BaseLayout.astro";
 import EntriesOne from "../components/entries/EntriesOne.astro";
 import Seo from "$comp/Seo.astro";
+import { sortByDate } from "src/util";
 ---
 
 <Seo title="Posts"/>
@@ -28,10 +29,10 @@ import Seo from "$comp/Seo.astro";
         {
           allPosts
             .slice()
-            .reverse()
+            .sort(sortByDate)
             .map((post) => (
               <EntriesOne
-                url={"/posts/" + post.slug}
+                url={"/posts/" + post.id}
                 title={post.data.title}
                 description={post.data.description}
                 pubDate={post.data.pubDate}
