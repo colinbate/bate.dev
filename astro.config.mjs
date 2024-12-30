@@ -17,5 +17,5 @@ export default defineConfig({
     drafts: true,
   },
   site: 'https://bate.dev',
-  integrations: [mdx(), svelte(), tailwind(), compress(), sitemap()],
+  integrations: [mdx(), svelte(), tailwind(), compress({SVG: false}), sitemap()],
 });
