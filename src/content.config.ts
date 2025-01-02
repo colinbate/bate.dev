@@ -1,5 +1,5 @@
 import { defineCollection, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { glob, file } from "astro/loaders";
 
 const postsCollection = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/posts" }),
@@ -42,7 +42,23 @@ const projectsCollection = defineCollection({
     }),
 });
 
+const seriesCollection = defineCollection({
+  loader: file("src/content/books/series.json"),
+  schema: () =>
+    z.object({
+      name: z.string(),
+      author: z.string(),
+      genre: z.string(),
+      icon: z.string(),
+      bookCount: z.number().int().nonnegative(),
+      isComplete: z.boolean(),
+      url: z.string().url(),
+      firstBookCoverUrl: z.string().optional(),
+    }),
+});
+
 export const collections = {
   posts: postsCollection,
   projects: projectsCollection,
+  series: seriesCollection,
 };

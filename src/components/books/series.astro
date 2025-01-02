@@ -1,0 +1,22 @@
+---
+import AuthorGenre from "$comp/global/AuthorGenre.astro";
+import { getCollection } from "astro:content";
+
+const series = await getCollection('series');
+let shown = series;
+---
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 non-prose">
+  {shown.map(s => 
+    <div class="border rounded-md flex flex-row gap-4 justify-between">
+      <div class="flex flex-col gap-2 p-3">
+
+      <h2 class="m-0"><a class="cursor-pointer" target="_blank" href={s.data.url}>{s.data.name}</a></h2>
+      <AuthorGenre series complete={s.data.isComplete} author={s.data.author} icon={s.data.icon} genre={s.data.genre} class="flex-col gap-2 items-start"></AuthorGenre>
+      <div>
+      {s.data.bookCount} books
+      </div>
+      </div>
+      <img src={s.data.firstBookCoverUrl || '/img/unknown-cover.webp'} class="not-prose rounded-r max-h-48">
+    </div>
+  )}
+</div>

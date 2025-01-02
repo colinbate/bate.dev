@@ -1,14 +1,18 @@
 ---
 import Icon from './icon.svelte';
+import { twMerge } from "tailwind-merge";
+
 type Props = {
   author: string;
   genre: string;
   icon: string;
   series?: boolean;
+  complete?: boolean;
+  class?: string;
 }
-const { author, genre, icon, series } = Astro.props;
+const { author, genre, icon, series, complete, class: className } = Astro.props;
 ---
-<div class="flex flex-row gap-4 justify-between items-center">
-  <div class="inline-flex items-center gap-2"><Icon icon={series ? 'series' : 'book'}/> by {author}</div>
-  <div class="inline-flex items-center gap-2"><Icon icon={icon} /> {genre}</div>
+<div class={twMerge([`flex flex-row gap-4 justify-between items-center`, className])}>
+  <div class="inline-flex items-center gap-2"><Icon class=" flex-none" icon={series ? (complete ? 'series-complete' : 'series') : 'book'}/> by {author}</div>
+  <div class="inline-flex items-center gap-2"><Icon class=" flex-none" icon={icon} /> {genre}</div>
 </div>
