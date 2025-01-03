@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 const series = await getCollection('series');
 let shown = series;
 ---
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 non-prose">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 non-prose mt-16">
   {shown.map(s => 
     <div class="border rounded-md flex flex-row gap-4 justify-between">
       <div class="flex flex-col gap-2 p-3">
