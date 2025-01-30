@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-const allPosts = await getCollection("posts");
 import BaseLayout from "../layouts/BaseLayout.astro";
 import EntriesOne from "../components/entries/EntriesOne.astro";
 import Seo from "$comp/Seo.astro";
 import { sortByDate } from "src/util";
+const allPosts = await getCollection("posts");
 ---
 
 <Seo title="Posts"/>

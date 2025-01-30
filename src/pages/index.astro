@@ -1,23 +1,25 @@
 ---
 import { getCollection } from "astro:content";
-const allPosts = await getCollection("posts");
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/landing/Hero.astro";
 import EntriesOne from "../components/entries/EntriesOne.astro";
 import Seo from '$comp/Seo.astro';
 import { sortByDate } from "src/util";
+
+const allPosts = await getCollection("posts");
 ---
 <Seo title="Welcome"/>
 <BaseLayout>
   <Hero />
   <section class="h-feed">
-    <div class="max-w-6xl mx-auto px-8 py-12">
+    <div class="max-w-6xl mx-auto px-8 py-12 flex flex-col gap-8">
       <div
         class="mt-6 gap-x-8 gap-y-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ">
         {
           allPosts
             .slice()
             .sort(sortByDate)
+            .slice(0, 12)
             .map((post) => (
               <EntriesOne
                 url={"/posts/" + post.id}
@@ -29,6 +31,9 @@ import { sortByDate } from "src/util";
               />
             ))
         }
+      </div>
+      <div>
+        <a href="/blog" class="rounded-md relative inline-flex items-center gap-x-1.5  bg-gray-800 px-4 py-2 text-lg font-semibold text-gray-100 hover:text-accent-300 ring-1 ring-inset ring-gray-300 hover:ring-accent-300 hover:bg-gray-900 focus:z-10">View All</a>
       </div>
     </div>
   </section>

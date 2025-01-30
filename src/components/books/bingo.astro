@@ -1,0 +1,27 @@
+---
+
+const categories = [
+  { done: true, name: 'A fairy tale re-telling', },
+  { done: true, name: 'A best book of 2024', },
+  { done: false, name: 'A book that gives you cozy vibes', },
+  { done: false, name: 'A near future novel by a woman', },
+  { done: false, name: 'A book from a genre that you usually avoid', },
+  { done: false, name: 'Tackle your TBR – read something on your list', },
+  { done: false, name: 'A Bermuda history book', },
+  { done: false, name: 'A book with an unreliable narrator', },
+  { done: false, name: 'Page to screen', },
+  { done: false, name: 'A book recommended to you', },
+  { done: false, name: 'An award winner', },
+  { done: false, name: 'A memoir', },
+  { done: false, name: 'An LGBTQ+ romance novel', },
+  { done: false, name: 'A joyful read by a Black writer', },
+  { done: false, name: 'A graphic novel', },
+  { done: false, name: 'A novel written by a Bermuda writer', },
+];
+
+---
+<div class=" bg-white p-px">
+  <div class="grid grid-cols-4 gap-px">
+    {categories.map((c, ind) => <div class:list={["bg-black p-1.5 text-center relative flex items-center justify-center aspect-square", c.done && 'text-accent-300']}><span class="absolute top-1 left-1.5">{ind+1}</span>{c.name}</div>)}
+  </div>
+</div>
