@@ -30,7 +30,7 @@ const pageTitle = "Tag Index";
       <div class="flex flex-wrap gap-6">
         {
           Object.entries(tags).map(([tag, count]) => (
-            <a class="isolate inline-flex rounded-md shadow-sm shadow-accent-400 group" href={`/tags/${tag}`}>
+            <a class="isolate inline-flex rounded-md shadow-xs shadow-accent-400 group" href={`/tags/${tag}`}>
               <span class="relative inline-flex items-center gap-x-1.5 rounded-l-md bg-gray-800 px-4 py-2 text-lg font-semibold text-gray-100 group-hover:text-accent-300 ring-1 ring-inset ring-gray-300 group-hover:ring-accent-300 group-hover:bg-gray-900 focus:z-10">
                 <svg viewBox="0 0 20 20" fill="currentColor" class="-ml-0.5 w-5 h-5 text-gray-400 group-hover:text-accent-500/70">
                   <path fill-rule="evenodd" d="M4.5 2A2.5 2.5 0 0 0 2 4.5v3.879a2.5 2.5 0 0 0 .732 1.767l7.5 7.5a2.5 2.5 0 0 0 3.536 0l3.878-3.878a2.5 2.5 0 0 0 0-3.536l-7.5-7.5A2.5 2.5 0 0 0 8.38 2H4.5ZM5 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />

@@ -16,14 +16,14 @@ const { frontmatter } = Astro.props;
       </h1>
       {frontmatter.subtitle &&
       <div
-        class="mt-8 max-w-2xl prose prose-hover:a:text-accent-300 prose-a:text-white prose-a:underline prose-blockquote:border-l-2 prose-blockquote:font-light prose-blockquote:text-white/50 prose-code:text-white prose-figcaption:pb-6 prose-figcaption:text-accent-300 prose-figcaption:text-base prose-h1:font-semibold prose-h1:lg:text-8xl prose-h1:text-5xl prose-h1:tracking-tighter prose-h4:lg:text-2xl prose-h4:text-xl prose-headings:text-white prose-img:aspect-square prose-img:object-cover prose-img:w-full prose-li:lg:text-xl prose-li:marker:text-white prose-li:text-lg prose-mark:bg-accent-300 prose-p:lg:text-xl prose-p:text-lg prose-strong:text-white space-y-6 text-white/70 prose-table:divide-white/20">
+        class="mt-8 max-w-2xl prose prose-hover:a:text-accent-300 prose-a:text-white prose-a:underline prose-blockquote:border-l-2 prose-blockquote:font-light prose-blockquote:text-white/50 prose-code:text-white prose-figcaption:pb-6 prose-figcaption:text-accent-300 prose-figcaption:text-base prose-h1:font-semibold lg:prose-h1:text-8xl prose-h1:text-5xl prose-h1:tracking-tighter lg:prose-h4:text-2xl prose-h4:text-xl prose-headings:text-white prose-img:aspect-square prose-img:object-cover prose-img:w-full lg:prose-li:text-xl prose-li:marker:text-white prose-li:text-lg prose-mark:bg-accent-300 lg:prose-p:text-xl prose-p:text-lg prose-strong:text-white space-y-6 text-white/70 prose-table:divide-white/20">
         <h4>
           {frontmatter.subtitle}
         </h4>
       </div>}
     </div>
     
-    <div class="max-w-5xl mt-12 prose hover:prose-a:text-accent-300 prose-a:text-white prose-a:underline prose-blockquote:border-l-2 prose-blockquote:border-accent-400 prose-blockquote:font-light prose-blockquote:text-white/50 prose-code:text-accent-300/60 prose-p:max-w-prose  prose-figcaption:pb-6 prose-figcaption:text-accent-300 prose-figcaption:text-base prose-h1:font-bold prose-h1:lg:text-8xl prose-h1:text-5xl prose-h1:tracking-tighter prose-h4:lg:text-2xl prose-h4:text-xl prose-headings:text-white prose-img:aspect-square prose-img:object-cover prose-img:w-full prose-li:lg:text-xl prose-li:marker:text-white prose-li:text-lg prose-mark:bg-accent-300 prose-p:lg:text-xl prose-p:text-lg prose-strong:text-white space-y-6 text-white/80 prose-table:divide-white/20">
+    <div class="max-w-5xl mt-12 prose prose-a:hover:text-accent-300 prose-a:text-white prose-a:underline prose-blockquote:border-l-2 prose-blockquote:border-accent-400 prose-blockquote:font-light prose-blockquote:text-white/50 prose-code:text-accent-300/60 prose-p:max-w-prose  prose-figcaption:pb-6 prose-figcaption:text-accent-300 prose-figcaption:text-base prose-h1:font-bold lg:prose-h1:text-8xl prose-h1:text-5xl prose-h1:tracking-tighter lg:prose-h4:text-2xl prose-h4:text-xl prose-headings:text-white prose-img:aspect-square prose-img:object-cover prose-img:w-full lg:prose-li:text-xl prose-li:marker:text-white prose-li:text-lg prose-mark:bg-accent-300 lg:prose-p:text-xl prose-p:text-lg prose-strong:text-white space-y-6 text-white/80 prose-table:divide-white/20">
       <div class=""><slot /></div>
     </div>
   </div>
