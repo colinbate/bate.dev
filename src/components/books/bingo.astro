@@ -3,7 +3,7 @@
 const categories = [
   { done: true, name: 'A fairy tale re-telling', },
   { done: true, name: 'A best book of 2024', },
-  { done: false, name: 'A book that gives you cozy vibes', },
+  { done: true, name: 'A book that gives you cozy vibes', },
   { done: false, name: 'A near future novel by a woman', },
   { done: false, name: 'A book from a genre that you usually avoid', },
   { done: false, name: 'Tackle your TBR – read something on your list', },
@@ -20,8 +20,16 @@ const categories = [
 ];
 
 ---
-<div class=" bg-white p-px">
-  <div class="grid grid-cols-4 gap-px">
-    {categories.map((c, ind) => <div class:list={["bg-black p-1.5 text-center relative flex items-center justify-center aspect-square", c.done && 'text-accent-300']}><span class="absolute top-1 left-1.5">{ind+1}</span>{c.name}</div>)}
+<div class="relative">
+  <div class="bg-white p-px max-w-60 sm:max-w-none">
+    <div class="grid grid-cols-4 gap-px">
+      {categories.map((c, ind) => <div class:list={["bg-black p-1.5 text-center relative flex items-center justify-center aspect-square", c.done && 'text-emerald-300']}>
+        <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:translate-x-0 sm:translate-y-0 sm:top-1 sm:left-1.5">{ind+1}</span>
+        <span class="hidden sm:inline">{c.name}</span>
+      </div>)}
+    </div>
   </div>
+  <ol class="sm:hidden">
+    {categories.map((c) => <li class:list={[c.done && 'text-emerald-300 marker:text-emerald-300!']}>{c.name}</li>)}
+  </ol>
 </div>
