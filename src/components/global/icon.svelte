@@ -7,7 +7,7 @@
   };
   let { icon, class: className }: IconProps = $props();
 
-  let href = $derived(`/icons.svg?3.1#${icon}`);
+  let href = $derived(`/icons.svg?3.2#${icon}`);
 </script>
 
 {#if icon}

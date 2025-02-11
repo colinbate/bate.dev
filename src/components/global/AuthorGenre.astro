@@ -12,7 +12,7 @@ type Props = {
 }
 const { author, genre, icon, series, complete, class: className } = Astro.props;
 ---
-<div class={twMerge([`flex flex-row gap-4 justify-between items-center`, className])}>
-  <div class="inline-flex items-center gap-2"><Icon class=" flex-none" icon={series ? (complete ? 'series-complete' : 'series') : 'book'}/> by {author}</div>
-  <div class="inline-flex items-center gap-2"><Icon class=" flex-none" icon={icon} /> {genre}</div>
+<div class={twMerge([`flex flex-col sm:flex-row gap-2 sm:gap-4 sm:items-center w-full`, className])}>
+  <div class="flex items-center gap-2"><Icon class=" flex-none" icon={series ? (complete ? 'series-complete' : 'series') : 'book'}/> by {author}</div>
+  <div class="flex items-center gap-2 sm:ml-auto sm:text-right"><Icon class=" flex-none" icon={icon} /><span class=" w-fit">{genre}</span></div>
 </div>
