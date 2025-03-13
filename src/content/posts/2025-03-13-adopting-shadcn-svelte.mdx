@@ -1,0 +1,30 @@
++++
+title = "Adopting Shadcn-Svelte"
+slug = "adopting-shadcn-svelte"
+author = "Colin Bate"
+description = "Streamlining my development workflow by providing customizable, accessible, and rapid UI components ideal for consistent and polished applications."
+pubDate = 2025-03-13T12:00:00Z
+tags = [ "dev", "svelte", "ui", "tailwind" ]
+
+[image]
+local = "./2025-03-13-adopting-shadcn-svelte.png"
+alt = "Shadcn-Svelte logo (two diagonal orange lines) on a black background."
++++
+At the end of last year, I began working on a project. My main priority was achieving a clean and consistent user interface. While uniqueness wasn't my primary concern, maintaining a polished and cohesive UI experience was essential. To streamline development, using a UI library made the most sense.
+
+I had been closely following the development of [Shadcn-Svelte][ss] and its underlying libraries—[bits ui][bu] and [Melt UI][mu]—and this project presented a perfect opportunity to explore them. Until now, my previous Svelte applications had relied heavily on [Tailwind CSS][tw] and, occasionally, Tailwind UI (now [Tailwind Plus][tp]). Although these provided some consistency, they required repetitive work and lacked deeper integration.
+
+Adopting Shadcn-Svelte marked a refreshing change. Its components integrate directly into your repository, allowing straightforward customization. This proved invaluable for the initial project and subsequent projects where I needed more personalized aesthetics without sacrificing functionality.
+
+One notable advantage was Shadcn-Svelte's intelligent use of Tailwind Merge and Svelte's built-in capabilities. This provided a set of default styles without losing the ability to customize on a use-by-use basis. Svelte 5's props mechanism means you can easily pass properties through, providing flexibility without losing the semantic and accessibility benefits of working directly with standard HTML elements. The components significantly simplified development, letting me rapidly prototype and build fully functional applications without being bogged down by UI minutiae.
+
+After experiencing the efficiency gains firsthand, I used Shadcn-Svelte for another quick mock-up. Once again, the process was impressively swift, reinforcing its role as my go-to choice for rapid application development. While not entirely eliminating UI work, Shadcn-Svelte dramatically reduced the time spent on styling and interactions.
+Previously, I'd manually implemented components such as dialogs, popovers, and tabs—functional but often lacking in accessibility. Shadcn-Svelte addressed this gap by providing accessible defaults. Now, even if my desired aesthetic differs significantly from the default styles provided by Shadcn-Svelte, I still start with their components as a foundation. From there, it's straightforward to extensively customize the UI through Tailwind CSS classes.
+
+Overall, adopting Shadcn-Svelte has significantly improved my development workflow. The combination of speed, flexibility, and built-in accessibility has made it my preferred choice for quickly building polished and consistent user interfaces.
+
+[ss]: https://www.shadcn-svelte.com/
+[bu]: https://www.bits-ui.com/
+[mu]: https://next.melt-ui.com/
+[tw]: https://tailwindcss.com/
+[tp]: https://tailwindcss.com/plus
