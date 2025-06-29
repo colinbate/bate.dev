@@ -1,0 +1,139 @@
+---
+import Icon from "$comp/global/icon.svelte";
+import type { GardenEntry } from "../../utils/garden-utils.ts";
+
+export interface Props {
+    entries: GardenEntry[];
+}
+
+const { entries } = Astro.props;
+
+// Get all unique tags for tag cloud
+const allTags = new Set<string>();
+entries.forEach((entry) => {
+    entry.data.tags?.forEach((tag) => allTags.add(tag));
+});
+const topTags = Array.from(allTags).slice(0, 8);
+---
+
+<div class="garden-sidebar">
+    <!-- Header -->
+    <div class="garden-header mb-6">
+        <div class="flex items-center gap-3 mb-4">
+            <Icon icon="seedling" class="w-6 h-6 text-emerald-400" />
+            <h2 class="text-xl font-semibold text-white">Digital Garden</h2>
+        </div>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+            A collection of interconnected thoughts, ideas, and notes that grow
+            over time.
+        </p>
+        <a
+            href="/garden"
+            class="inline-flex items-center gap-2 text-accent-400 hover:text-accent-300 transition-colors text-sm mt-3"
+        >
+            Explore the garden →
+        </a>
+    </div>
+
+    <!-- Recent Growth -->
+    {
+        entries.length > 0 && (
+            <div class="recent-growth mb-8">
+                <h3 class="text-sm font-medium text-white mb-4 uppercase tracking-wide">
+                    Recent Growth
+                </h3>
+                <div class="space-y-3">
+                    {entries.slice(0, 5).map((entry) => {
+                        const slug = entry.id.replace(/\.mdx?$/, "");
+                        const lastTended =
+                            entry.data.updated || entry.data.created;
+                        const isRecent =
+                            lastTended &&
+                            Date.now() - new Date(lastTended).getTime() <
+                                7 * 24 * 60 * 60 * 1000; // 7 days
+
+                        return (
+                            <a
+                                href={`/garden/${slug}`}
+                                class="garden-entry-link block p-3 rounded-lg bg-zinc-900/30 hover:bg-zinc-900/50 border border-transparent hover:border-accent-400/30 transition-all group"
+                            >
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="text-sm font-medium text-white group-hover:text-accent-300 transition-colors line-clamp-2">
+                                        {entry.data.title}
+                                    </h4>
+                                    {isRecent && (
+                                        <Icon
+                                            icon="seedling"
+                                            class="w-3 h-3 text-emerald-400 flex-shrink-0 ml-2 mt-0.5"
+                                        />
+                                    )}
+                                </div>
+
+                                {entry.data.tags &&
+                                    entry.data.tags.length > 0 && (
+                                        <div class="flex flex-wrap gap-1 mb-2">
+                                            {entry.data.tags
+                                                .slice(0, 2)
+                                                .map((tag) => (
+                                                    <span class="text-xs bg-accent-400/10 text-accent-300 px-2 py-0.5 rounded">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                        </div>
+                                    )}
+
+                                <p class="text-xs text-zinc-500">
+                                    {typeof lastTended === "string"
+                                        ? `Tended ${lastTended}`
+                                        : `Tended ${lastTended.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" })}`}
+                                </p>
+                            </a>
+                        );
+                    })}
+                </div>
+            </div>
+        )
+    }
+
+    <!-- Topic Explorer -->
+    {
+        topTags.length > 0 && (
+            <div class="topic-explorer">
+                <h3 class="text-sm font-medium text-white mb-4 uppercase tracking-wide">
+                    Explore Topics
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    {topTags.map((tag) => (
+                        <span class="garden-tag hover:-translate-y-px inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-accent-400/10 to-accent-300/10 text-accent-300 border border-accent-400/20 hover:border-accent-400/40 cursor-pointer transition-all">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+
+    <!-- Stats (if you want to add them) -->
+    <div
+        class="garden-stats mt-8 p-4 rounded-lg bg-zinc-900/20 border border-white/5"
+    >
+        <div class="grid grid-cols-2 gap-4 text-center">
+            <div>
+                <div class="text-lg font-semibold text-accent-400">
+                    {entries.length}
+                </div>
+                <div class="text-xs text-zinc-500 uppercase tracking-wide">
+                    Notes
+                </div>
+            </div>
+            <div>
+                <div class="text-lg font-semibold text-accent-400">
+                    {allTags.size}
+                </div>
+                <div class="text-xs text-zinc-500 uppercase tracking-wide">
+                    Topics
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

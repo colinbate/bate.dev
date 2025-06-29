@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import RelatedEntries from "../components/garden/RelatedEntries.astro";
 import BackLinks from "../components/garden/BackLinks.astro";
 import GardenDevTools from "../components/garden/GardenDevTools.astro";
+import Icon from "$comp/global/icon.svelte";
 import {
     getRelatedEntries,
     getBacklinks,
@@ -50,7 +51,11 @@ const updated = entry.data.updated
         <!-- Garden Header -->
         <div class="flex items-center justify-between mb-12">
             <nav class="flex items-center gap-2 text-sm text-zinc-400">
-                <a href="/garden" class="garden-nav-link">🌱 Garden</a>
+                <a
+                    href="/garden"
+                    class="text-accent-400 hover:text-accent-300 transition-colors inline-flex items-center gap-2"
+                    ><Icon icon="seedling" class="text-emerald-400" /> Garden</a
+                >
                 <span class="text-zinc-600">→</span>
                 <span class="text-white">{title}</span>
             </nav>
@@ -149,14 +154,6 @@ const updated = entry.data.updated
         font-family: "Recursive", sans-serif;
     }
 
-    .garden-nav-link {
-        color: var(--color-accent-400);
-        transition: color 0.2s;
-    }
-
-    .garden-nav-link:hover {
-        color: var(--color-accent-300);
-    }
 
     .garden-tag {
         background: linear-gradient(

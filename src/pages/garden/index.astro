@@ -1,16 +1,14 @@
 ---
 import Seo from "$comp/Seo.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "$comp/global/icon.svelte";
 import { getCollection } from "astro:content";
+import { sortGardenByDate } from "src/util";
 
 const gardenEntries = await getCollection("garden");
 
 // Sort by updated date (most recent first), then by created date
-const sortedEntries = gardenEntries.sort((a, b) => {
-    const aDate = a.data.updated || a.data.created;
-    const bDate = b.data.updated || b.data.created;
-    return new Date(bDate).getTime() - new Date(aDate).getTime();
-});
+const sortedEntries = gardenEntries.sort(sortGardenByDate);
 
 // Group entries by tags for the tag cloud
 const allTags = new Set<string>();
@@ -94,7 +92,10 @@ const tagArray = Array.from(allTags).sort();
                                             </h3>
                                             {isRecent && (
                                                 <span class="ml-2 text-sm">
-                                                    🌱
+                                                    <Icon
+                                                        icon="seedling"
+                                                        class="text-emerald-400"
+                                                    />
                                                 </span>
                                             )}
                                         </div>
