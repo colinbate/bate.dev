@@ -1,0 +1,282 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import RelatedEntries from "../components/garden/RelatedEntries.astro";
+import BackLinks from "../components/garden/BackLinks.astro";
+import GardenDevTools from "../components/garden/GardenDevTools.astro";
+import {
+    getRelatedEntries,
+    getBacklinks,
+    type GardenEntry,
+} from "../utils/garden-utils.ts";
+import Seo from "$comp/Seo.astro";
+
+export interface Props {
+    entry: GardenEntry;
+    title: string;
+    description?: string;
+}
+
+const { entry, title, description } = Astro.props;
+const isDev = import.meta.env.DEV;
+const slug = entry.id.replace(/\.mdx?$/, "");
+
+// Get related content
+const relatedEntries = await getRelatedEntries(entry);
+const backlinks = await getBacklinks(slug);
+
+// Format dates
+const created = entry.data.created
+    ? entry.data.created.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          timeZone: "UTC",
+      })
+    : null;
+
+const updated = entry.data.updated
+    ? entry.data.updated.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          timeZone: "UTC",
+      })
+    : null;
+---
+
+<Seo title={entry.data.title} description={entry.data.description} />
+<BaseLayout>
+    <main class="max-w-7xl mx-auto px-8 lg:px-24 py-8 lg:py-16">
+        <!-- Garden Header -->
+        <div class="flex items-center justify-between mb-12">
+            <nav class="flex items-center gap-2 text-sm text-zinc-400">
+                <a href="/garden" class="garden-nav-link">🌱 Garden</a>
+                <span class="text-zinc-600">→</span>
+                <span class="text-white">{title}</span>
+            </nav>
+
+            {isDev && <GardenDevTools slug={slug} />}
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+            <!-- Primary Content -->
+            <article class="lg:col-span-3">
+                <header
+                    class="garden-article-header mb-8 pb-6 border-b border-white/10"
+                >
+                    <h1
+                        class="garden-title text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
+                    >
+                        {title}
+                    </h1>
+
+                    <div
+                        class="flex flex-wrap gap-6 text-sm text-zinc-400 mb-4"
+                    >
+                        {
+                            created && (
+                                <div class="flex items-center gap-2">
+                                    <span class="text-zinc-500">Planted:</span>
+                                    <time
+                                        datetime={entry.data.created.toISOString()}
+                                    >
+                                        {created}
+                                    </time>
+                                </div>
+                            )
+                        }
+                        {
+                            updated && (
+                                <div class="flex items-center gap-2">
+                                    <span class="text-zinc-500">Tended:</span>
+                                    <time
+                                        datetime={entry.data.updated.toISOString()}
+                                    >
+                                        {updated}
+                                    </time>
+                                </div>
+                            )
+                        }
+                    </div>
+
+                    {
+                        entry.data.tags && entry.data.tags.length > 0 && (
+                            <div class="flex flex-wrap gap-2">
+                                {entry.data.tags.map((tag: string) => (
+                                    <span class="garden-tag inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        )
+                    }
+                </header>
+
+                <div
+                    class="garden-prose prose prose-invert prose-lg max-w-none prose-headings:text-white prose-headings:font-medium prose-p:text-zinc-300 prose-p:leading-relaxed prose-strong:text-white prose-blockquote:text-zinc-300"
+                >
+                    <slot />
+                </div>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="lg:col-span-1 space-y-8">
+                {
+                    relatedEntries.length > 0 && (
+                        <RelatedEntries entries={relatedEntries} />
+                    )
+                }
+
+                {backlinks.length > 0 && <BackLinks backlinks={backlinks} />}
+            </aside>
+        </div>
+    </main>
+</BaseLayout>
+
+<style>
+    /* Garden-specific styles that can't be expressed with Tailwind utilities */
+    .garden-title {
+        background: linear-gradient(
+            135deg,
+            #facc15 0%,
+            #84cc16 50%,
+            #22d3ee 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-family: "Recursive", sans-serif;
+    }
+
+    .garden-nav-link {
+        color: var(--color-accent-400);
+        transition: color 0.2s;
+    }
+
+    .garden-nav-link:hover {
+        color: var(--color-accent-300);
+    }
+
+    .garden-tag {
+        background: linear-gradient(
+            to right,
+            color-mix(in srgb, var(--color-accent-400) 20%, transparent),
+            color-mix(in srgb, var(--color-accent-300) 20%, transparent)
+        );
+        color: var(--color-accent-300);
+        border-color: color-mix(
+            in srgb,
+            var(--color-accent-400) 30%,
+            transparent
+        );
+    }
+
+    .garden-article-header {
+        position: relative;
+    }
+
+    .garden-article-header::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            var(--color-accent-400) 50%,
+            transparent 100%
+        );
+    }
+
+    /* Garden-specific prose styles */
+    .garden-prose :global(a) {
+        color: var(--color-accent-400);
+        text-decoration: none;
+    }
+
+    .garden-prose :global(a:hover) {
+        color: var(--color-accent-300);
+    }
+
+    .garden-prose :global(code) {
+        color: var(--color-accent-300);
+    }
+
+    .garden-prose :global(blockquote) {
+        border-left-color: var(--color-accent-400);
+    }
+
+    .garden-prose :global(.wikilink) {
+        color: var(--color-accent-400);
+        text-decoration: none;
+        border-bottom: 1px dotted currentColor;
+        position: relative;
+        transition: color 0.2s;
+    }
+
+    .garden-prose :global(.wikilink:hover) {
+        color: var(--color-accent-300);
+    }
+
+    .garden-prose :global(.wikilink-new) {
+        color: #fb923c;
+        cursor: pointer;
+        border-bottom: 1px dashed currentColor;
+    }
+
+    .garden-prose :global(.wikilink-new:hover) {
+        color: #fdba74;
+    }
+
+    .garden-prose :global(.wikilink-new::after) {
+        content: "✨";
+        margin-left: 0.25rem;
+        font-size: 0.75rem;
+        opacity: 0.7;
+    }
+</style>
+
+<script>
+    // Handle wikilink clicks in development
+    if (import.meta.env.DEV) {
+        document.addEventListener("click", async (e) => {
+            const target = e.target as HTMLElement;
+
+            if (target.classList.contains("wikilink-new")) {
+                e.preventDefault();
+
+                const linkText = target.textContent?.replace("✨", "").trim();
+                if (!linkText) return;
+
+                try {
+                    const response = await fetch("/api/garden/create", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ title: linkText }),
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        // Navigate to the new page
+                        window.location.href = `/garden/${result.slug}`;
+                    } else {
+                        console.error(
+                            "Failed to create garden entry:",
+                            result.error,
+                        );
+                        alert("Failed to create garden entry: " + result.error);
+                    }
+                } catch (error) {
+                    console.error("Error creating garden entry:", error);
+                    alert("Error creating garden entry");
+                }
+            }
+        });
+    }
+</script>

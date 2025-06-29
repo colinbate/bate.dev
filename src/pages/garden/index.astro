@@ -1,0 +1,190 @@
+---
+import Seo from "$comp/Seo.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const gardenEntries = await getCollection("garden");
+
+// Sort by updated date (most recent first), then by created date
+const sortedEntries = gardenEntries.sort((a, b) => {
+    const aDate = a.data.updated || a.data.created;
+    const bDate = b.data.updated || b.data.created;
+    return new Date(bDate).getTime() - new Date(aDate).getTime();
+});
+
+// Group entries by tags for the tag cloud
+const allTags = new Set<string>();
+gardenEntries.forEach((entry) => {
+    entry.data.tags?.forEach((tag) => allTags.add(tag));
+});
+const tagArray = Array.from(allTags).sort();
+---
+
+<Seo title="Digital Garden" />
+<BaseLayout>
+    <main class="max-w-7xl mx-auto px-8 lg:px-24 py-8 lg:py-16">
+        <div class="text-center mb-16">
+            <h1
+                class="garden-hero-title text-5xl lg:text-6xl font-bold mb-6 leading-[1.2]"
+            >
+                🌱 Digital Garden
+            </h1>
+            <p class="text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed">
+                A collection of interconnected thoughts, ideas, and notes. These
+                are living documents that grow and evolve over time.
+            </p>
+        </div>
+
+        <div class="space-y-16">
+            <!-- Tag Cloud -->
+            {
+                tagArray.length > 0 && (
+                    <section class="bg-zinc-900/30 rounded-2xl p-8 border border-white/10">
+                        <h2 class="text-2xl font-semibold text-white mb-8 font-['Recursive',sans-serif]">
+                            Explore by Topic
+                        </h2>
+                        <div class="flex flex-wrap gap-3">
+                            {tagArray.map((tag) => {
+                                const count = gardenEntries.filter((entry) =>
+                                    entry.data.tags?.includes(tag),
+                                ).length;
+                                return (
+                                    <span
+                                        class="tag-cloud-item inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-yellow-400/20 to-yellow-300/20 text-yellow-300 border border-yellow-400/30 cursor-pointer hover:from-yellow-400/30 hover:to-yellow-300/30 transition-all duration-200"
+                                        data-count={count}
+                                    >
+                                        {tag}
+                                    </span>
+                                );
+                            })}
+                        </div>
+                    </section>
+                )
+            }
+
+            <!-- Recent Entries -->
+            <section>
+                <h2
+                    class="text-2xl font-semibold text-white mb-8 font-['Recursive',sans-serif]"
+                >
+                    Recent Growth
+                </h2>
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
+                    {
+                        sortedEntries.map((entry) => {
+                            const slug = entry.id.replace(/\.mdx?$/, "");
+                            const lastTended =
+                                entry.data.updated || entry.data.created;
+                            const isRecent =
+                                lastTended &&
+                                Date.now() - new Date(lastTended).getTime() <
+                                    7 * 24 * 60 * 60 * 1000; // 7 days
+
+                            return (
+                                <article class="bg-zinc-900/50 rounded-lg border border-white/10 hover:border-accent-400/30 hover:bg-zinc-900/70 transition-all duration-200">
+                                    <a
+                                        href={`/garden/${slug}`}
+                                        class="block p-6 h-full"
+                                    >
+                                        <div class="flex items-start justify-between mb-3">
+                                            <h3 class="text-white font-medium text-lg flex-1">
+                                                {entry.data.title}
+                                            </h3>
+                                            {isRecent && (
+                                                <span class="ml-2 text-sm">
+                                                    🌱
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        {entry.data.description && (
+                                            <p class="text-zinc-400 text-sm mb-4 line-clamp-3">
+                                                {entry.data.description}
+                                            </p>
+                                        )}
+
+                                        <div class="flex items-center justify-between text-xs">
+                                            <time class="text-zinc-500">
+                                                {lastTended.toLocaleDateString(
+                                                    "en-US",
+                                                    {
+                                                        month: "short",
+                                                        day: "numeric",
+                                                        year: "numeric",
+                                                        timeZone: "UTC",
+                                                    },
+                                                )}
+                                            </time>
+
+                                            {entry.data.tags &&
+                                                entry.data.tags.length > 0 && (
+                                                    <div class="flex gap-2">
+                                                        {entry.data.tags
+                                                            .slice(0, 3)
+                                                            .map((tag) => (
+                                                                <span class="text-zinc-400 bg-zinc-800/50 px-2 py-1 rounded">
+                                                                    {tag}
+                                                                </span>
+                                                            ))}
+                                                    </div>
+                                                )}
+                                        </div>
+                                    </a>
+                                </article>
+                            );
+                        })
+                    }
+                </div>
+            </section>
+        </div>
+    </main>
+</BaseLayout>
+
+<style>
+    .garden-hero-title {
+        background: linear-gradient(
+            135deg,
+            #84cc16 0%,
+            #22d3ee 50%,
+            #a855f7 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-family: "Recursive", sans-serif;
+    }
+
+    .garden-nav-link {
+        color: var(--color-accent-400);
+        transition: color 0.2s;
+    }
+
+    .garden-nav-link:hover {
+        color: var(--color-accent-300);
+    }
+
+    .tag-cloud-item {
+        background: linear-gradient(
+            to right,
+            color-mix(in srgb, var(--color-accent-400) 20%, transparent),
+            color-mix(in srgb, var(--color-accent-300) 20%, transparent)
+        );
+        color: var(--color-accent-300);
+        border-color: color-mix(
+            in srgb,
+            var(--color-accent-400) 30%,
+            transparent
+        );
+        font-size: calc(0.75rem + 0.1rem * var(--count, 1));
+    }
+
+    .tag-cloud-item:hover {
+        background: linear-gradient(
+            to right,
+            color-mix(in srgb, var(--color-accent-400) 30%, transparent),
+            color-mix(in srgb, var(--color-accent-300) 30%, transparent)
+        );
+    }
+</style>

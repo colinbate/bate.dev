@@ -1,33 +1,43 @@
 ---
-import { SITE_TITLE } from '$data/constants';
+import { SITE_TITLE } from "$data/constants";
 
 const relUrl = Astro.url.pathname;
 ---
+
 <div class="mx-auto w-full bg-black justify-center">
-  <div
-    class="mx-auto w-full flex flex-row items-center justify-between px-8 max-w-7xl lg:px-24 py-6 lg:py-16">
-    <div class="items-center flex justify-between flex-row z-20">
-      <a
-        data-home={relUrl === '/'}
-        class="text-accent-400 hover:text-accent-300 items-center gap-3 inline-flex tracking-tighter text-lg data-[home=false]:text-2xl"
-        href="/"
-        ><span>{SITE_TITLE}</span>
-      </a>
+    <div
+        class="mx-auto w-full flex flex-row items-center justify-between px-8 max-w-7xl lg:px-24 py-6 lg:py-16"
+    >
+        <div class="items-center flex justify-between flex-row z-20">
+            <a
+                data-home={relUrl === "/"}
+                class="text-accent-400 hover:text-accent-300 items-center gap-3 inline-flex tracking-tighter text-lg data-[home=false]:text-2xl"
+                href="/"
+                ><span>{SITE_TITLE}</span>
+            </a>
+        </div>
+        <nav
+            class="opacity-100 items-center grow p-0 px-0 flex flex-row justify-start mt-0 gap-8"
+        >
+            <a
+                data-active={relUrl === "/blog"}
+                class="font-medium duration-2 focus:outline-hidden focus:shadow-none hover:text-accent-300 md:my-0 py-2 ml-auto data-[active=true]:underline data-[active=true]:text-purewhite"
+                href="/blog"
+                >Posts
+            </a>
+            <a
+                data-active={relUrl === "/projects"}
+                class="font-medium duration-2 focus:outline-hidden focus:shadow-none hover:text-accent-300 md:my-0 py-2 data-[active=true]:underline data-[active=true]:text-purewhite"
+                href="/projects"
+                >Projects
+            </a>
+            <a
+                data-active={relUrl === "/garden" ||
+                    relUrl.startsWith("/garden/")}
+                class="font-medium duration-2 focus:outline-hidden focus:shadow-none hover:text-accent-300 md:my-0 py-2 data-[active=true]:underline data-[active=true]:text-purewhite"
+                href="/garden"
+                >Garden
+            </a>
+        </nav>
     </div>
-    <nav
-      class="opacity-100 items-center grow p-0 px-0 flex flex-row justify-start mt-0 gap-8">
-      <a
-        data-active={relUrl === '/blog'}
-        class="font-medium duration-2 focus:outline-hidden focus:shadow-none hover:text-accent-300 md:my-0 py-2 ml-auto data-[active=true]:underline data-[active=true]:text-purewhite"
-        href="/blog"
-        >Posts
-      </a>
-      <a
-        data-active={relUrl === '/projects'}
-        class="font-medium duration-2 focus:outline-hidden focus:shadow-none hover:text-accent-300 md:my-0 py-2 data-[active=true]:underline data-[active=true]:text-purewhite"
-        href="/projects"
-        >Projects
-      </a>
-    </nav>
-  </div>
 </div>

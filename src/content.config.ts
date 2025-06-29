@@ -42,6 +42,19 @@ const projectsCollection = defineCollection({
     }),
 });
 
+const gardenCollection = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/garden" }),
+  schema: z.object({
+    title: z.string(),
+    created: z.date(),
+    updated: z.date().optional(),
+    tags: z.array(z.string()).default([]),
+    aliases: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+    description: z.string().optional(),
+  }),
+});
+
 const seriesCollection = defineCollection({
   loader: file("src/content/books/series.json"),
   schema: () =>
@@ -61,4 +74,5 @@ export const collections = {
   posts: postsCollection,
   projects: projectsCollection,
   series: seriesCollection,
+  garden: gardenCollection,
 };

@@ -1,0 +1,55 @@
+---
+export interface Props {
+    slug: string;
+}
+
+const { slug } = Astro.props;
+const isDev = import.meta.env.DEV;
+---
+
+{
+    isDev && (
+        <div class="flex gap-2">
+            <button
+                id="open-in-editor"
+                data-slug={slug}
+                class="bg-accent-400/20 hover:bg-accent-400/30 text-accent-300 px-3 py-1 rounded text-sm transition-colors border border-accent-400/30 hover:border-accent-400/50"
+                title="Open in Zed Editor"
+            >
+                ✏️ Edit
+            </button>
+        </div>
+    )
+}
+
+<script>
+    // Handle editor opening
+    document.addEventListener("click", async (e) => {
+        const target = e.target as HTMLElement;
+
+        if (target.id === "open-in-editor") {
+            const slug = target.dataset.slug;
+            if (!slug) return;
+
+            try {
+                const response = await fetch("/api/garden/open", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ slug }),
+                });
+
+                const result = await response.json();
+
+                if (!result.success) {
+                    console.error("Failed to open file:", result.error);
+                    alert("Failed to open file in editor: " + result.error);
+                }
+            } catch (error) {
+                console.error("Error opening file:", error);
+                alert("Error opening file in editor");
+            }
+        }
+    });
+</script>
