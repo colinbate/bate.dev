@@ -1,8 +1,10 @@
 +++
 title = "PKM"
 created = 2025-06-28
+updated = 2025-06-29
 tags = ["tools", "learning", "pkm"]
 aliases = []
+slug = "pkm"
 +++
 
 aka. Personal Knowledge Management

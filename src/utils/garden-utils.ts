@@ -96,7 +96,7 @@ export async function createGardenFile(
   slug: string,
 ): Promise<FileCreationResult> {
   const gardenDir = path.join(process.cwd(), "src/content/garden");
-  const filePath = path.join(gardenDir, `${slug}.md`);
+  const filePath = path.join(gardenDir, `${title}.md`);
 
   // Ensure garden directory exists
   await fs.mkdir(gardenDir, { recursive: true });
@@ -112,6 +112,7 @@ title = "${title}"
 created = ${now}
 tags = []
 aliases = []
+slug = "${slug}"
 +++
 
 

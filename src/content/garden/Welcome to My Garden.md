@@ -2,6 +2,7 @@
 title = "Welcome to My Garden"
 created = 2025-06-28
 tags = ["meta", "welcome"]
+slug = "welcome"
 +++
 
 This is my digital garden - a space for interconnected thoughts and ideas.
