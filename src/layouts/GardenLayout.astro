@@ -17,7 +17,7 @@ export interface Props {
     description?: string;
 }
 
-const { entry, title, description } = Astro.props;
+const { entry, title } = Astro.props;
 const isDev = import.meta.env.DEV;
 const slug = entry.id.replace(/\.mdx?$/, "");
 
@@ -96,7 +96,7 @@ const updated = entry.data.updated
                                 <div class="flex items-center gap-2">
                                     <span class="text-zinc-500">Tended:</span>
                                     <time
-                                        datetime={entry.data.updated.toISOString()}
+                                        datetime={entry.data.updated?.toISOString()}
                                     >
                                         {updated}
                                     </time>
@@ -153,7 +153,6 @@ const updated = entry.data.updated
         background-clip: text;
         font-family: "Recursive", sans-serif;
     }
-
 
     .garden-tag {
         background: linear-gradient(
@@ -264,14 +263,14 @@ const updated = entry.data.updated
                         window.location.href = `/garden/${result.slug}`;
                     } else {
                         console.error(
-                            "Failed to create garden entry:",
+                            "Failed to create garden note:",
                             result.error,
                         );
-                        alert("Failed to create garden entry: " + result.error);
+                        alert("Failed to create garden note: " + result.error);
                     }
                 } catch (error) {
-                    console.error("Error creating garden entry:", error);
-                    alert("Error creating garden entry");
+                    console.error("Error creating garden note:", error);
+                    alert("Error creating garden note");
                 }
             }
         });

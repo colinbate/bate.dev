@@ -14,7 +14,7 @@ Since my existing site was done with Astro, I wanted to see if I could build a g
 
 So with the help of [[Claude]], I whipped something together. It's not perfect, but it's a start.
 
-Another reason I "needed" to create my own is because I have specific, less popular tastes. [[TOML Frontmatter]] is one of those tastes. 
+Another reason I "needed" to create my own is because I have specific, less popular tastes. [[TOML Frontmatter]] is one of those tastes.
 
 Astro is fine with TOML, as I added that functionality in version 5.2, but Obsidian is not, and I was hoping to use Obsidian to manage the files in the garden.
 

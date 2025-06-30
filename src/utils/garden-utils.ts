@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
+import { slugify } from "$utils/slugify";
 import fs from "fs/promises";
 import path from "path";
 
@@ -13,20 +14,6 @@ export interface FileCreationResult {
   success: boolean;
   error?: string;
   filePath?: string;
-}
-
-// Slugify function for converting titles to filenames
-export function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "") // Remove special characters
-    .replace(/[\s_-]+/g, "-") // Replace spaces and underscores with hyphens
-    .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
-}
-
-// WikiLink resolver for remark-wiki-link (runtime version)
-export function gardenWikiLinkResolver(name: string): string {
-  return slugify(name);
 }
 
 // Get all garden entries (for building alias map)
@@ -171,7 +158,7 @@ export async function getBacklinks(
     const wikiLinkRegex = /\[\[([^\]]+)\]\]/g;
     let match: RegExpExecArray | null;
 
-    while ((match = wikiLinkRegex.exec(entry.body)) !== null) {
+    while ((match = wikiLinkRegex.exec(entry.body ?? "")) !== null) {
       const linkText = match[1].split("|")[0]; // Handle aliases
       const resolvedSlug = await resolveWikiLink(linkText);
 

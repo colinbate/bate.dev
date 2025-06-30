@@ -6,15 +6,16 @@ import "../styles/global.css";
 ---
 
 <html
-  lang="en"
-  class="scroll-smooth selection:bg-white/20 selection:text-accent-400">
-  <head>
-    <BaseHead />
-  </head>
-  <body class="bg-black text-white">
-    <Navigation />
+    lang="en"
+    class="scroll-smooth selection:bg-white/20 selection:text-accent-400"
+>
+    <head>
+        <BaseHead />
+    </head>
+    <body class="bg-black text-white" id="page">
+        <Navigation />
 
-    <slot />
-    <Footer />
-  </body>
+        <slot />
+        <Footer />
+    </body>
 </html>

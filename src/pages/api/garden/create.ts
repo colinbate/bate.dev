@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
-import { createGardenFile, slugify } from "../../../utils/garden-utils.ts";
+import { createGardenFile } from "$utils/garden-utils";
+import { slugify } from "$utils/slugify";
 // Only allow in development
 const isDev = import.meta.env.DEV;
 export const prerender = !isDev;

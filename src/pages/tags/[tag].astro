@@ -3,71 +3,108 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogPost from "../../components/BlogPost.astro";
 import { getCollection } from "astro:content";
 import Project from "$comp/Project.astro";
+import Note from "$comp/garden/Note.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("posts");
-  const allProjects = await getCollection('projects');
-  const postTags = allPosts.map((post) => post.data.tags).flat();
-  const projTags = allProjects.map(proj => proj.data.tags).flat();
-  const uniqueTags = [
-    ...new Set(postTags.concat(projTags)),
-  ];
+    const allPosts = await getCollection("posts");
+    const allProjects = await getCollection("projects");
+    const allGarden = await getCollection("garden");
+    const postTags = allPosts.map((post) => post.data.tags).flat();
+    const projTags = allProjects.map((proj) => proj.data.tags).flat();
+    const gardenTags = allGarden.map((garden) => garden.data.tags).flat();
+    const uniqueTags = [
+        ...new Set(postTags.concat(projTags).concat(gardenTags)),
+    ];
 
-  return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.data.tags.includes(tag)
-    );
-    const filteredProjs = allProjects.filter(proj => proj.data.tags.includes(tag));
-    return {
-      params: { tag },
-      props: { posts: filteredPosts, projects: filteredProjs },
-    };
-  });
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post) =>
+            post.data.tags.includes(tag),
+        );
+        const filteredProjs = allProjects.filter((proj) =>
+            proj.data.tags.includes(tag),
+        );
+        const filteredNotes = allGarden.filter((garden) =>
+            garden.data.tags.includes(tag),
+        );
+        return {
+            params: { tag },
+            props: {
+                posts: filteredPosts,
+                projects: filteredProjs,
+                notes: filteredNotes,
+            },
+        };
+    });
 }
 
 const { tag } = Astro.params;
-const { posts, projects } = Astro.props;
+const { posts, projects, notes } = Astro.props;
 ---
 
 <BaseLayout pageTitle={tag}>
-  <section aria-labelledby="header" class="relative overflow-hidden">
-    <div class="overflow-hidden relative">
-      <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
-        <h1
-          class="text-white mt-4 font-semibold text-5xl lg:text-8xl tracking-tighter">
-          Tagged <span class="text-accent-200">{tag}</span>
-        </h1>
-      </div>
-    </div>
-  </section>
-  {posts.length &&
-  <section>
-    <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
-      <h2 class="text-white font-semibold text-4xl tracking-tighter border-b border-accent-300 pb-5 mb-6">Posts</h2>
-      <ol role="list" class="space-y-3">
-      {
-        posts.map((post) => (
-          <li aria-label="#">
-            
-              <BlogPost
-                url={"/posts/" + post.slug}
-                title={post.data.title}
-                pubDate={post.data.pubDate}
-              />
-            
-          </li>
-        ))
-      }
-      </ol>
-    </div>
-  </section>}
-  {projects.length &&
-  <section>
-    <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
-      <h2 class="text-white font-semibold text-4xl tracking-tighter border-b border-accent-300 pb-5 mb-6">Projects</h2>
-      <div class="space-y-6 max-w-5xl">
-        {projects.map(proj => <Project proj={proj} />)}
-      </div>
-    </div>
-  </section>}
+    <section aria-labelledby="header" class="relative overflow-hidden">
+        <div class="overflow-hidden relative">
+            <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
+                <h1
+                    class="text-white mt-4 font-semibold text-5xl lg:text-8xl tracking-tighter"
+                >
+                    Tagged <span class="text-accent-200">{tag}</span>
+                </h1>
+            </div>
+        </div>
+    </section>
+    {
+        posts.length && (
+            <section>
+                <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
+                    <h2 class="text-white font-semibold text-4xl tracking-tighter border-b border-accent-300 pb-5 mb-6">
+                        Posts
+                    </h2>
+                    <ol role="list" class="space-y-3">
+                        {posts.map((post) => (
+                            <li aria-label="#">
+                                <BlogPost
+                                    url={"/posts/" + post.id}
+                                    title={post.data.title}
+                                    pubDate={post.data.pubDate}
+                                />
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+            </section>
+        )
+    }
+    {
+        notes.length && (
+            <section>
+                <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
+                    <h2 class="text-white font-semibold text-4xl tracking-tighter border-b border-accent-300 pb-5 mb-6">
+                        Garden
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {notes.map((note) => (
+                            <Note entry={note} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        )
+    }
+    {
+        projects.length && (
+            <section>
+                <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
+                    <h2 class="text-white font-semibold text-4xl tracking-tighter border-b border-accent-300 pb-5 mb-6">
+                        Projects
+                    </h2>
+                    <div class="space-y-6 max-w-5xl">
+                        {projects.map((proj) => (
+                            <Project proj={proj} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        )
+    }
 </BaseLayout>

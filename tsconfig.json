@@ -7,7 +7,8 @@
       "$asset/*": ["./src/assets/*"],
       "$comp/*": ["./src/components/*"],
       "$data/*": ["./src/data/*"],
-      "$layout/*": ["./src/layouts/*"]
-    },
+      "$layout/*": ["./src/layouts/*"],
+      "$utils/*": ["./src/utils/*"]
+    }
   }
 }

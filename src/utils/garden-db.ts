@@ -1,5 +1,6 @@
 // src/utils/garden-db.ts
 import { parseTomlFrontmatter } from "./frontmatter.ts";
+import { slugify } from "./slugify.ts";
 import chokidar, { type FSWatcher } from "chokidar";
 import fs from "fs/promises";
 import path from "path";
@@ -27,9 +28,11 @@ class GardenDB {
     try {
       const content = await fs.readFile(filePath, "utf-8");
       const { frontmatter } = parseTomlFrontmatter(content);
-      const slug = path.basename(filePath, path.extname(filePath));
+      const title = path.basename(filePath, path.extname(filePath));
+      const slug = slugify(title);
 
-      this.documents.set(slug, {
+      this.documents.set(title, {
+        title,
         slug,
         frontmatter,
         url: `/garden/${slug}`,

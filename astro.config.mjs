@@ -6,18 +6,10 @@ import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 import remarkWikiLink from "@braindb/remark-wiki-link";
 import gardenDB from "./src/utils/garden-db.ts";
+import { slugify } from "./src/utils/slugify.ts";
 
 // Initialize the database
 await gardenDB.init();
-
-// Simple slugify function for build time
-function slugify(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "") // Remove special characters
-    .replace(/[\s_-]+/g, "-") // Replace spaces and underscores with hyphens
-    .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
-}
 
 export default defineConfig({
   markdown: {
@@ -31,7 +23,7 @@ export default defineConfig({
             const [slugWithoutAnchor, anchor] = slug.split("#");
 
             if (slugWithoutAnchor) {
-              const doc = gardenDB.getDocument(slugify(slugWithoutAnchor));
+              const doc = gardenDB.getDocument(slugWithoutAnchor);
 
               if (doc) {
                 return {
