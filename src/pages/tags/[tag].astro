@@ -4,6 +4,8 @@ import BlogPost from "../../components/BlogPost.astro";
 import { getCollection } from "astro:content";
 import Project from "$comp/Project.astro";
 import Note from "$comp/garden/Note.astro";
+import Seo from "$comp/Seo.astro";
+import Icon from "$comp/global/icon.svelte";
 
 export async function getStaticPaths() {
     const allPosts = await getCollection("posts");
@@ -41,6 +43,7 @@ const { tag } = Astro.params;
 const { posts, projects, notes } = Astro.props;
 ---
 
+<Seo title={`${tag} Tag`} />
 <BaseLayout pageTitle={tag}>
     <section aria-labelledby="header" class="relative overflow-hidden">
         <div class="overflow-hidden relative">
@@ -54,11 +57,13 @@ const { posts, projects, notes } = Astro.props;
         </div>
     </section>
     {
-        posts.length && (
+        !!posts.length && (
             <section>
                 <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
                     <h2 class="text-white font-semibold text-4xl tracking-tighter border-b border-accent-300 pb-5 mb-6">
-                        Posts
+                        <a href="/blog">
+                            Posts <Icon icon="pen-nib" class="size-8 ml-3" />
+                        </a>
                     </h2>
                     <ol role="list" class="space-y-3">
                         {posts.map((post) => (
@@ -76,11 +81,17 @@ const { posts, projects, notes } = Astro.props;
         )
     }
     {
-        notes.length && (
+        !!notes.length && (
             <section>
                 <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
                     <h2 class="text-white font-semibold text-4xl tracking-tighter border-b border-accent-300 pb-5 mb-6">
-                        Garden
+                        <a href="/garden">
+                            Garden
+                            <Icon
+                                icon="seedling"
+                                class="size-8 ml-3 text-emerald-400"
+                            />
+                        </a>
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {notes.map((note) => (
@@ -92,11 +103,14 @@ const { posts, projects, notes } = Astro.props;
         )
     }
     {
-        projects.length && (
+        !!projects.length && (
             <section>
                 <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">
                     <h2 class="text-white font-semibold text-4xl tracking-tighter border-b border-accent-300 pb-5 mb-6">
-                        Projects
+                        <a href="/projects">
+                            Projects
+                            <Icon icon="laptop-code" class="size-10 ml-3" />
+                        </a>
                     </h2>
                     <div class="space-y-6 max-w-5xl">
                         {projects.map((proj) => (

@@ -14,7 +14,7 @@ At first glance, the `order` CSS property may not seem that useful. But every on
 
 I use an application called [LogSeq][ls] as my personal knowledge management tool. My goal isn't to talk about LogSeq here; that is likely a whole article on its own. However, there are some relevant facts about it that will be useful.
 
-LogSeq allows for the creation of links using the **[[double square brackets]]** model, and when using their mobile application, they provide an extra toolbar with an icon to insert those brackets. Unfortunately, that icon is on the right side of that extra toolbar, off the screen, while another common icon is located on the left. This had me constantly swiping left and right as I needed those different icons.
+LogSeq allows for the creation of links using the **[&#8203;[double square brackets]&#8203;]** model (aka. wikilinks), and when using their mobile application, they provide an extra toolbar with an icon to insert those brackets. Unfortunately, that icon is on the right side of that extra toolbar, off the screen, while another common icon is located on the left. This had me constantly swiping left and right as I needed those different icons.
 
 My desire to be lazy about this lead me to search for a solution, but I couldn't find one. The code revealed there was no way to customize the order. However, LogSeq is an Electron app and does support a `custom.css` for theming and visual customization. Maybe that holds the answer?
 

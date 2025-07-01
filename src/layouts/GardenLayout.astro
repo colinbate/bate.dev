@@ -109,9 +109,12 @@ const updated = entry.data.updated
                         entry.data.tags && entry.data.tags.length > 0 && (
                             <div class="flex flex-wrap gap-2">
                                 {entry.data.tags.map((tag: string) => (
-                                    <span class="garden-tag inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border">
+                                    <a
+                                        href={`/tags/${tag}`}
+                                        class="garden-tag inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border"
+                                    >
                                         {tag}
-                                    </span>
+                                    </a>
                                 ))}
                             </div>
                         )
@@ -203,35 +206,6 @@ const updated = entry.data.updated
 
     .garden-prose :global(blockquote) {
         border-left-color: var(--color-accent-400);
-    }
-
-    .garden-prose :global(.wikilink) {
-        color: var(--color-accent-400);
-        text-decoration: none;
-        border-bottom: 1px dotted currentColor;
-        position: relative;
-        transition: color 0.2s;
-    }
-
-    .garden-prose :global(.wikilink:hover) {
-        color: var(--color-accent-300);
-    }
-
-    .garden-prose :global(.wikilink-new) {
-        color: #fb923c;
-        cursor: pointer;
-        border-bottom: 1px dashed currentColor;
-    }
-
-    .garden-prose :global(.wikilink-new:hover) {
-        color: #fdba74;
-    }
-
-    .garden-prose :global(.wikilink-new::after) {
-        content: "✨";
-        margin-left: 0.25rem;
-        font-size: 0.75rem;
-        opacity: 0.7;
     }
 </style>
 
