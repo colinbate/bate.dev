@@ -17,8 +17,9 @@ const image = (img ?? isGarden) ? gardenImage : defaultImage;
 
 <AstroSeo
     title={`${SITE_TITLE} | ${title}`}
-    description={description ||
-        `The portfolio and developer blog of Colin Bate.`}
+    description={description || isGarden
+        ? `Part of Colin Bate's Digital Garden.`
+        : `The portfolio and developer blog of Colin Bate.`}
     canonical={SITE_URL}
     openGraph={{
         url: SITE_URL,
