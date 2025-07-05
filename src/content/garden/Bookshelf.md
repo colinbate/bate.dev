@@ -2,6 +2,7 @@
 title = "Bookshelf"
 slug = "bookshelf"
 created = 2025-07-01
+updated = 2025-07-05
 tags = ["books", "app", "daydream"]
 aliases = ["Reading Tracker"]
 +++

@@ -2,6 +2,7 @@
 title = "Backstories"
 slug = "backstories"
 created = 2025-07-01
+updated = 2025-07-05
 tags = ["app", "spec"]
 aliases = []
 description = "Backstories is a mobile-first, series-focused book tracking app designed for high-volume readers—especially audiobook and indie fans—who want to ditch social features and focus on what they’ve read, what’s next, and when. It streamlines personal library management, tracks series progress and upcoming releases, and supports metadata capture from Audible, Amazon, and Goodreads CSV exports."
