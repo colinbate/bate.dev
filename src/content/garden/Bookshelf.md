@@ -18,3 +18,5 @@ Introducing [[Backstories]].
 
 So now that I have a plan, the next step is to start building, with the help of [[Claude]] of course. If this sounds interesting to you as well, let me know. You can email `colin` at the domain of this site.
 
+I will say that Claude doesn't always yield very optimal database usage.
+

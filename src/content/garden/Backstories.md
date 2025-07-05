@@ -8,7 +8,7 @@ description = "Backstories is a mobile-first, series-focused book tracking app d
 +++
 
 ## Overview
-A mobile-first, personal-focused book tracking app optimized for audiobook-heavy, series-driven readers (especially LitRPG, sci-fi, and fantasy). Designed for users who want to move away from Goodreads and manage their personal reading library without social features. Core differentiators include support for series tracking, audiobook imports, and flexible metadata for indie and Amazon-exclusive books.
+A mobile-first, personal-focused book tracking app optimized for audiobook-heavy, series-driven readers (especially [[LitRPG]], sci-fi, and fantasy). Designed for users who want to move away from Goodreads and manage their personal reading library without social features. Core differentiators include support for series tracking, audiobook imports, and flexible metadata for indie and Amazon-exclusive books.
 
 ---
 
@@ -73,9 +73,15 @@ A mobile-first, personal-focused book tracking app optimized for audiobook-heavy
 - Bookmarklet to grab current page metadata and push to app
 
 ### 8. Privacy & Multi-User Support
-- Optional login for multi-user support
-- Global book pool with opt-in/opt-out for contributing entries
-- Books can be marked private to a user even if public version exists
+- Each library will be single user
+- Static login for site protection
+- Future support for hosting multiple D1 databases (user per database) with basic login support
+- Books/series/etc can be exported for sharing across libraries if desired
+- Possible to opt-in to publish certain aspects of your library
+
+### 9. Sharing & Publishing
+- Tag-based sharing mechanisms
+- Only share what you want, separate from your ability to track
 
 ---
 
@@ -90,7 +96,10 @@ A mobile-first, personal-focused book tracking app optimized for audiobook-heavy
 
 ### Phase 0: Data Foundations
 - Schema design in D1
-- Goodreads CSV importer (CLI/Dashboard only)
+- Goodreads CSV importer
+	- File uploader
+	- Handle at least 1MB file with ~5000 entries
+- Basic view of data on a dashboard
 
 ### Phase 1: MVP App
 - Mobile-first UI: View/add/edit books and series
@@ -135,6 +144,10 @@ A mobile-first, personal-focused book tracking app optimized for audiobook-heavy
 
 ## Stack Summary
 - SvelteKit 2 (mobile-first PWA)
+- Svelte 5 with Runes
+- Shadcn-Svelte
+- Tailwind 4
+- Drizzle ORM
 - Cloudflare D1 for storage
 - Durable Object or Workers for scraping/bookmarklet metadata
 - Optional: Cloudflare R2 for image storage
