@@ -2,11 +2,13 @@
 title = "Backstories"
 slug = "backstories"
 created = 2025-07-01
-updated = 2025-07-05
+updated = 2025-08-02
 tags = ["app", "spec"]
 aliases = []
 description = "Backstories is a mobile-first, series-focused book tracking app designed for high-volume readers—especially audiobook and indie fans—who want to ditch social features and focus on what they’ve read, what’s next, and when. It streamlines personal library management, tracks series progress and upcoming releases, and supports metadata capture from Audible, Amazon, and Goodreads CSV exports."
 +++
+
+I have paused development on this while looking into some other projects.
 
 ## Overview
 A mobile-first, personal-focused book tracking app optimized for audiobook-heavy, series-driven readers (especially [[LitRPG]], sci-fi, and fantasy). Designed for users who want to move away from Goodreads and manage their personal reading library without social features. Core differentiators include support for series tracking, audiobook imports, and flexible metadata for indie and Amazon-exclusive books.
