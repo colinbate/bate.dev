@@ -1,0 +1,42 @@
++++
+title = "Character Sheet Suite"
+slug = "sheet-suite"
+author = "Colin Bate"
+description = "Planning to build/refactor my separate character sheet apps into a cohesive suite."
+pubDate = 2025-08-03T15:00:00Z
+tags = [ "svelte", “cloudflare”, "ttrpg", "tools" ]
+
+[image]
+local = "./2025-08-03-sheet-suite.webp"
+alt = "painterly image of an anvil with a sheet atop it"
++++
+
+I’m launching a project to unify and evolve several of my existing TTRPG tools into one cohesive "Sheets" ecosystem. The idea is to split the workload into a couple of main front-end apps:
+
+1. **SessionForge** – the GM side of things, combining encounter prep, NPC manager, random tables, and world/session organization.
+2. **Narrator** - a simple dice and content log that can be swapped out for Discord integration.
+3. **Character Sheets** – a set of lightweight player-focused apps that can run standalone, in an Owlbear Rodeo iframe, or any other embed context down the road.
+
+Under the hood, all apps will share a common `@ttrpgtools/core` package (dice-rolling, data models, random tables) and a themable `@ttrpgtools/ui` component library. I’ll be leveraging pnpm workspaces, so each app does:
+
+```bash
+pnpm add @ttrpgtools/core @ttrpgtools/ui
+```
+
+…and imports exactly what it needs:
+
+```ts
+import { rollDice }   from '@ttrpgtools/core/dice';
+import { Button }     from '@ttrpgtools/ui';
+import { NPCManager } from '@ttrpgtools/systems/nimble';
+```
+
+The big lift is refactoring existing code--but by breaking every system into a small `packages/systems/{system}` folder (with a manifest, `PlayerSheet`, `NPCManager`, etc.), I can move functionality wholesale without copy-pasting. SessionForge will be a SvelteKit app talking directly to D1 for persistence (games, NPCs, encounters) and is tied to an SSO user. Character Sheets stay offline-first with IndexedDB, syncing to D1 only if you choose to sign in.
+
+I’m aiming to keep sign-in completely optional. One-shots and quick pickup games will work entirely in the browser, while ongoing campaigns get durable storage and cross-device syncing. Over the next few months, you’ll see:
+
+- A Games Dashboard in SessionForge for creating, organizing, exporting/importing sessions.
+- A pop-out integration to jump from Owlbear or any iframe to your full GM "screen."
+- A consistent, themable UI across both apps so Nimble, Brighter Worlds, or any future system feel familiar.
+
+This refactor is a sizable engineering effort, but I hope to have something to show by the end of the summer by reusing and reorganizing existing modules. Stay tuned for early previews of SessionForge and the revamped Character Sheets--hopefully just in time for your next campaign.
