@@ -1,0 +1,169 @@
++++
+title = "One Thing from Todoist"
+slug = "one-thing-todoist"
+author = "Colin Bate"
+description = "Grabbing my latest Todoist task to display in my menubar."
+pubDate = 2025-08-11T15:00:00Z
+tags = [ "deno", "todoist", "automation", "tools" ]
+
+[image]
+local = "./2025-08-11-one-thing-todoist.webp"
+alt = "logos of Todoist and One Thing with Deno and Keychain Access"
++++
+
+I've been experimenting with a quality-of-life improvement to help me stay on task— displaying the top task from a specific Todoist project in the [One Thing](https://sindresorhus.com/one-thing) app. One Thing allows you to display a text message in the macOS menu bar. I've been using and updating the content of One Thing manually for the past couple of months, sometimes reliably, other times less so. One Thing has a simple Node API for updating what it displays, so this was primarily about retrieving that task from Todoist.
+
+Initially, I wanted to listen to an event locally from the Todoist app. But that isn't an option. I can query the app, but there's no way to listen to all of the events that take place locally. There is an option to use webhooks from their cloud service, which I'm usually all about if I'm trying to integrate with a server. However, in this case, I wanted something to integrate locally, and being on a laptop in particular means that I'm not inclined to run a service that's open to the internet for this. So I went with the more boring option, which is polling.
+
+I wrote a [Deno](https://deno.com/) script to access the Todoist API. The documentation for the Todoist API is somewhat confusing, as it features a newer API labelled v1, which consolidates separate v9 and v2 APIs. In the end, I figured it out. I'm fetching the list of tasks, filtering them by project ID, sorting them by `child_order` because I want the top one in the list, and then I'm setting that with the `one-thing` API.
+
+```ts
+import oneThing from "npm:one-thing";
+
+type Item = {
+  id: string;
+  project_id: string;
+  content: string;
+  checked: boolean;
+  child_order: number;
+  parent_id: string | null;
+  is_deleted?: boolean;
+};
+
+async function fetchItems(token: string): Promise<Item[]> {
+  const body = new URLSearchParams({
+    sync_token: "*",
+    resource_types: JSON.stringify(["items"]),
+  });
+
+  const res = await fetch("https://api.todoist.com/api/v1/sync", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body,
+  });
+  if (!res.ok) throw new Error(`Todoist sync failed: ${res.status}`);
+  const data = await res.json();
+  return (data.items ?? []) as Item[];
+}
+
+function pickTop(items: Item[]): Item | null {
+  return (
+    items
+      .filter(
+        (i) =>
+          i.project_id === PROJECT_ID &&
+          i.checked === false &&
+          i.is_deleted !== true &&
+          i.parent_id == null,
+      )
+      .sort((a, b) => a.child_order - b.child_order)[0] ?? null
+  );
+}
+```
+
+I didn't want to include my Todoist API token in my code or any configuration file, so I looked into using the Mac keychain as a way to store it, which proved to be not that difficult. You can add it via the Keychain Access app or the command line.
+
+```bash
+security add-generic-password -a "$USER" -s todoist_api_token -w '<YOUR_TODOIST_TOKEN>'
+```
+
+Then, back in my Deno script, I fetch it like this:
+
+```ts
+async function keychain(service: string) {
+  const p = new Deno.Command("security", {
+    args: [
+      "find-generic-password",
+      "-a",
+      Deno.env.get("USER")!,
+      "-s",
+      service,
+      "-w",
+    ],
+  }).output();
+  const { stdout, success } = await p;
+  if (!success) throw new Error("Keychain read failed");
+  return new TextDecoder().decode(stdout).trim();
+}
+```
+
+That way, my script retrieves the token from the Keychain at runtime.
+
+And then finally, I string it together. I am checking to verify that the value remains the same as in the previous run. I'm not sure whether this is strictly necessary; it could be an unnecessary extra overhead. I can probably just set the same `oneThing` value each minute.
+
+```ts
+async function main() {
+  const token = await keychain("todoist_api_token");
+  const items = await fetchItems(token);
+  const top = pickTop(items);
+  const text = top ? top.content : "";
+
+  // update only if changed
+  const state = `${Deno.env.get("HOME")}/.todoist_one_thing.state`;
+  const prev = await Deno.readTextFile(state).catch(() => "");
+  if (text !== prev) {
+    await oneThing(text);
+    await Deno.writeTextFile(state, text);
+    console.log(text ? `Set: ${text}` : "Cleared One Thing");
+  } else {
+    console.log("No change.");
+  }
+}
+
+await main();
+```
+
+Once the script was ready, I needed to create a plist file to set up `launchd` to be able to run it periodically. That file is placed in `~/Library/LaunchAgents`.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>dev.bate.todoist-one-thing</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/path/to/deno</string>
+    <string>run</string>
+    <string>--allow-net</string>
+    <string>--allow-run</string>
+    <string>--allow-read</string>
+    <string>--allow-write</string>
+    <string>--allow-env</string>
+    <string>/path/to/todoist-one-thing.ts</string>
+  </array>
+
+  <!-- Run every 60 seconds -->
+  <key>StartInterval</key>
+  <integer>60</integer>
+
+  <!-- Also run immediately after bootstrap/login -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- Log files -->
+  <key>StandardOutPath</key>
+  <string>/tmp/todoist-one-thing.out</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/todoist-one-thing.err</string>
+</dict>
+</plist>
+```
+
+Once the plist file is ready, I can bootstrap it so that the launch system can locate and execute it. With more recent versions of macOS, the command is:
+
+```fish
+launchctl bootstrap gui/(id -u) ~/Library/LaunchAgents/dev.bate.todoist-one-thing.plist
+```
+
+And that's it — the menu bar stays in sync, no manual updates, no fiddling with tunnels.
+
+In the back of my mind, I'm still thinking, 'Hey, can I set up a Cloudflare worker that listens to the Todoist webhooks and keeps track of my top task in a key-value store?' Still, I can't think of a real solid use case for having that information available like that that I'm not already doing in my current setup. Although that sounds interesting, I won't end up doing it.
+
+Probably.
