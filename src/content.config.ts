@@ -1,4 +1,5 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 import { glob, file } from "astro/loaders";
 
 const postsCollection = defineCollection({
@@ -65,7 +66,7 @@ const seriesCollection = defineCollection({
       icon: z.string(),
       bookCount: z.number().int().nonnegative(),
       isComplete: z.boolean(),
-      url: z.string().url(),
+      url: z.url(),
       firstBookCoverUrl: z.string().optional(),
     }),
 });
