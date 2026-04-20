@@ -5,8 +5,11 @@ import BaseLayout from "./BaseLayout.astro";
 import type { CollectionEntry } from "astro:content";
 interface Props {
     frontmatter: CollectionEntry<"posts">["data"];
+    postId: string;
 }
-const { frontmatter } = Astro.props;
+const { frontmatter, postId } = Astro.props;
+const baseUrl = Astro.site ?? Astro.url;
+const ogImageUrl = new URL(`/og/${postId}.png`, baseUrl).href;
 ---
 
 <BaseLayout
@@ -17,6 +20,7 @@ const { frontmatter } = Astro.props;
     publishTime={frontmatter.pubDate.toISOString()}
     ogtitle={frontmatter.ogtitle}
     ogdescription={frontmatter.ogdescription}
+    ogImageUrl={ogImageUrl}
 >
     <section class="h-entry overflow-hidden relative bg-black">
         <div class="px-6 sm:px-8 mx-auto max-w-7xl lg:px-24 py-24">

@@ -10,6 +10,7 @@ interface Props {
     updateTime?: string;
     img?: ImageMetadata;
     alt?: string;
+    ogImageUrl?: string;
 }
 const {
     title,
@@ -20,6 +21,7 @@ const {
     updateTime,
     img,
     alt,
+    ogImageUrl,
 } = Astro.props;
 ---
 
@@ -42,6 +44,7 @@ const {
     publishTime={publishTime}
     updateTime={updateTime}
     ogdescription={ogdescription}
+    ogImageUrl={ogImageUrl}
 />
 <meta name="author" content="Colin Bate" />
 <meta

@@ -22,6 +22,7 @@
     "astro": "^6.1.8",
     "astro-compress": "^2.3.8",
     "chokidar": "^4.0.3",
+    "satori": "^0.26.0",
     "sharp": "^0.33.0",
     "smol-toml": "^1.6.0",
     "svelte": "^5.46.0",

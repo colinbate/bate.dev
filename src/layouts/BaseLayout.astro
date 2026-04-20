@@ -12,6 +12,7 @@ interface Props {
     updateTime?: string;
     img?: ImageMetadata;
     alt?: string;
+    ogImageUrl?: string;
 }
 const {
     title,
@@ -22,6 +23,7 @@ const {
     updateTime,
     img,
     alt,
+    ogImageUrl,
 } = Astro.props;
 ---
 
@@ -39,6 +41,7 @@ const {
             publishTime={publishTime}
             updateTime={updateTime}
             ogdescription={ogdescription}
+            ogImageUrl={ogImageUrl}
         />
     </head>
     <body class="bg-black text-white" id="page">

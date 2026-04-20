@@ -12,6 +12,7 @@ interface Props {
     updateTime?: string;
     img?: ImageMetadata;
     alt?: string;
+    ogImageUrl?: string;
 }
 const {
     title,
@@ -22,6 +23,7 @@ const {
     updateTime,
     img,
     alt,
+    ogImageUrl,
 } = Astro.props;
 
 const isGarden = Astro.url.pathname.startsWith("/garden/");
@@ -38,25 +40,30 @@ const defaultCanonicalUrl = new URL(
     baseUrl,
 );
 const canonicalHref = defaultCanonicalUrl.href;
-const imgUrl = new URL(image.src, baseUrl).href;
+const imgUrl = ogImageUrl ?? new URL(image.src, baseUrl).href;
+const imageType = ogImageUrl ? "png" : image.format;
+const imageWidth = ogImageUrl ? "1200" : image.width.toString();
+const imageHeight = ogImageUrl ? "630" : image.height.toString();
+const metaTitle = ogtitle ?? (title || SITE_TITLE);
+const metaDescription = ogdescription ?? description;
 ---
 
 <title>{`${SITE_TITLE} | ${title}`}</title>
 <link rel="canonical" href={canonicalHref} />
 <meta property="description" content={description} />
-<meta property="og:title" content={ogtitle ?? (title || SITE_TITLE)} />
+<meta property="og:title" content={metaTitle} />
 <meta property="og:type" content={publishTime ? "article" : "website"} />
 <meta property="og:url" content={canonicalHref} />
 <meta property="og:image" content={imgUrl} />
-<meta property="og:image:type" content={`image/${image.format}`} />
-<meta property="og:image:width" content={image.width.toString()} />
-<meta property="og:image:height" content={image.height.toString()} />
+<meta property="og:image:type" content={`image/${imageType}`} />
+<meta property="og:image:width" content={imageWidth} />
+<meta property="og:image:height" content={imageHeight} />
 <meta property="og:image:alt" content={altext} />
-{
-    ogdescription ? (
-        <meta property="og:description" content={ogdescription} />
-    ) : null
-}
+<meta property="og:description" content={metaDescription} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={metaTitle} />
+<meta name="twitter:description" content={metaDescription} />
+<meta name="twitter:image" content={imgUrl} />
 {
     publishTime ? (
         <meta property="article:published_time" content={publishTime} />
