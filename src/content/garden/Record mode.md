@@ -4,6 +4,7 @@ slug = "record-mode"
 created = 2025-08-27
 tags = ["ai"]
 aliases = []
+description = "ChatGPT on macOS can record up to two hours of audio and produce a transcript and summary, which is useful for getting feedback on presentations."
 +++
 
 This is referring to the ChatGPT Record mode available on the MacOS client.

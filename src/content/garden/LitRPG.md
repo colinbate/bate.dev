@@ -5,6 +5,7 @@ created = 2025-07-05
 updated = 2025-07-08
 tags = ["genre", "books"]
 aliases = []
+description = "LitRPG is a progression fantasy sub-genre featuring character stats borrowed from tabletop and video RPGs, and one of my favorite genres to read."
 +++
 
 A sub-genre of fiction whereby characters have access to/awareness of some form of personal stats, as a means to understanding their own personal progression. Modeled after tabletop role-playing games and video role-playing games, stories typically have a fantasy theme, but other themes are possible.

@@ -5,6 +5,7 @@ created = 2025-07-01
 updated = 2025-07-05
 tags = ["books", "app", "daydream"]
 aliases = ["Reading Tracker"]
+description = "A long-planned personal book tracking app I want to build, now shaped into a concrete plan called Backstories with help from Claude."
 +++
 
 A while ago I wrote about a [Reading Tracker](/posts/reading-tracker) tool that I wanted to make.

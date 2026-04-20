@@ -4,6 +4,7 @@ slug = "svelte"
 created = 2025-09-04
 tags = []
 aliases = []
+description = "Svelte is my favorite web framework, and its SvelteKit meta framework makes building full, modern, fast web applications a genuine pleasure."
 +++
 
 My favorite web framework. If you aren't using it, you will be happier when you do.

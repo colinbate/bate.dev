@@ -5,6 +5,7 @@ created = 2025-08-02
 updated = 2026-03-13
 tags = ["location", "bermuda"]
 aliases = []
+description = "Notes on the Bermuda National Library in Hamilton, its reading challenges like Book Bingo, and monthly silent reading meetups."
 +++
 
 Site: [bnl.bm](https://www.bnl.bm)

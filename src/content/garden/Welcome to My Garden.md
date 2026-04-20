@@ -4,6 +4,7 @@ created = 2025-06-28
 updated = 2025-09-04
 tags = ["meta", "welcome"]
 slug = "welcome"
+description = "Welcome to my digital garden, a space for interconnected thoughts on TTRPGs, reading, audiobooks, software development, Svelte and more."
 +++
 
 This is my digital garden - a space for interconnected thoughts and ideas.

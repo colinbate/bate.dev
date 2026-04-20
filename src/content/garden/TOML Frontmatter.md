@@ -5,6 +5,7 @@ updated = 2025-08-27
 tags = ["toml"]
 aliases = ["TOML"]
 slug = "toml-frontmatter"
+description = "Notes on using TOML for markdown frontmatter instead of YAML, including the spec, libraries, and site generators that support it natively."
 +++
 
 Despite the popular frontmatter choice being YAML, I am not a fan of YAML, and I am a fan of TOML. I've been using it for frontmatter since ~2014 when I created a Hugo site, converting a ton of old database-bound content into markdown with TOML metadata.

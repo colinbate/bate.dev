@@ -4,6 +4,7 @@ slug = "astro"
 created = 2025-08-27
 tags = ["tools", "ssg", "toml"]
 aliases = []
+description = "Astro is a content-focused site generator with React-like syntax that supports embedding Svelte and other frameworks, and now handles SSR."
 +++
 
 https://astro.build

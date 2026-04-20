@@ -4,6 +4,7 @@ slug = "mispronunciations"
 created = 2025-08-02
 tags = ["rant"]
 aliases = []
+description = "A short rant about fantasy words people keep mispronouncing, such as ichor, chitin, chthonic and chasm, along with their Greek origins."
 +++
 
 Some words show up a lot in fantasy fiction—books, games, audiobooks—and yet I hear friends and even audiobook narrators mispronounce them all the time. I get it. English is weird. But still.

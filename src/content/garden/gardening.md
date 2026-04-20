@@ -4,6 +4,7 @@ created = 2025-06-28
 updated = 2025-06-30
 tags = ["meta", "dogfooding"]
 slug = "gardening"
+description = "Why and how I built my own digital garden with Astro, Claude, and TOML frontmatter, after years of exploring PKM tools and approaches."
 +++
 
 I've been interested in the [[PKM]] space for ~5 years now. In that time I've played around with an number of apps.

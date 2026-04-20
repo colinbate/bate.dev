@@ -5,6 +5,7 @@ updated = 2025-06-29
 tags = ["tools", "learning", "pkm"]
 aliases = []
 slug = "pkm"
+description = "Personal Knowledge Management, popularized by tools like Obsidian, Roam and Notion, with LogSeq being my long-time daily driver for several years."
 +++
 
 aka. Personal Knowledge Management

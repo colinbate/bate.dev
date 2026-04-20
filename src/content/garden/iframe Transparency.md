@@ -4,6 +4,7 @@ slug = "iframe-transparency"
 created = 2025-09-04
 tags = []
 aliases = []
+description = "Why an iframe can render with a white or dark background instead of transparent when the color-scheme differs between parent and child pages."
 +++
 
 By default, `<iframe>`s have transparent backgrounds unless the child document specifies a specific background color for it to use. However, more recently, the support of `color-scheme` in browsers has caused for a slight shift in this behavior. If the `color-scheme` of the parent document and the color scheme of the child document differ, including if one doesn't specify, it can cause the iframe to use the canvas background, which is to say a white background in light mode or a dark background in dark mode.

@@ -5,6 +5,7 @@ created = 2025-08-02
 updated = 2025-08-27
 tags = ["event"]
 aliases = []
+description = "An intro to role-playing games I am running at the Bermuda Library in September 2025, refined with help from the ChatGPT macOS Record mode."
 +++
 
 The introductory presentation that I'm planning to run at the [[Bermuda Library]] on 16 September 2025.
