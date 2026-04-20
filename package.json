@@ -1,7 +1,7 @@
 {
   "name": "bate.dev",
   "type": "module",
-  "version": "2025.12.22",
+  "version": "2026.04.20",
   "private": true,
   "scripts": {
     "dev": "astro dev --port 4111",
@@ -15,7 +15,6 @@
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/svelte": "^8.0.5",
-    "@astrolib/seo": "^1.0.0-beta.8",
     "@braindb/remark-wiki-link": "^2.1.0",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",

@@ -4,7 +4,6 @@ import BlogPost from "../../components/BlogPost.astro";
 import { getCollection } from "astro:content";
 import Project from "$comp/Project.astro";
 import Note from "$comp/garden/Note.astro";
-import Seo from "$comp/Seo.astro";
 import Icon from "$comp/global/icon.svelte";
 
 export async function getStaticPaths() {
@@ -43,8 +42,10 @@ const { tag } = Astro.params;
 const { posts, projects, notes } = Astro.props;
 ---
 
-<Seo title={`${tag} Tag`} />
-<BaseLayout pageTitle={tag}>
+<BaseLayout
+    title={`Tagged ${tag}`}
+    description={`All items (post, projects, and garden entries) tagged with '${tag}'`}
+>
     <section aria-labelledby="header" class="relative overflow-hidden">
         <div class="overflow-hidden relative">
             <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">

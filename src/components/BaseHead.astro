@@ -1,5 +1,26 @@
 ---
 import "../styles/global.css";
+import SEO from "./Seo.astro";
+interface Props {
+    title: string;
+    description: string;
+    ogtitle?: string;
+    ogdescription?: string;
+    publishTime?: string;
+    updateTime?: string;
+    img?: ImageMetadata;
+    alt?: string;
+}
+const {
+    title,
+    ogtitle,
+    description,
+    ogdescription,
+    publishTime,
+    updateTime,
+    img,
+    alt,
+} = Astro.props;
 ---
 
 <meta charset="utf-8" />
@@ -7,38 +28,32 @@ import "../styles/global.css";
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="preconnect" href="https://fonts.bunny.net">
-<link href="https://fonts.bunny.net/css?family=jetbrains-mono:400|recursive:400,700" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.bunny.net" />
+<link
+    href="https://fonts.bunny.net/css?family=jetbrains-mono:400|recursive:400,700"
+    rel="stylesheet"
+/>
+<SEO
+    title={title}
+    ogtitle={ogtitle}
+    description={description}
+    img={img}
+    alt={alt}
+    publishTime={publishTime}
+    updateTime={updateTime}
+    ogdescription={ogdescription}
+/>
 <meta name="author" content="Colin Bate" />
 <meta
-  name="keywords"
-  content="developer,coding,svelte,web,tools,games,blog,portfolio"
+    name="keywords"
+    content="developer,coding,svelte,web,tools,games,blog,portfolio"
 />
-<link rel="me" href="https://colinbate.com/"/>
-<link
-  rel="apple-touch-icon"
-  sizes="180x180"
-  href="/apple-touch-icon.png"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="32x32"
-  href="/favicon-32x32.png"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="16x16"
-  href="/favicon-16x16.png"
-/>
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="me" href="https://colinbate.com/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="manifest" href="/site.webmanifest" />
-<link
-  rel="mask-icon"
-  href="/safari-pinned-tab.svg"
-  color="#facc15"
-/>
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#facc15" />
 <meta name="msapplication-TileColor" content="#09090b" />
 <meta name="theme-color" content="#09090b" />
-

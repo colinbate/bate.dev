@@ -1,5 +1,4 @@
 ---
-import Seo from "$comp/Seo.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import { sortGardenByDate } from "src/util";
@@ -18,8 +17,11 @@ gardenEntries.forEach((entry) => {
 const tagArray = Array.from(allTags).sort();
 ---
 
-<Seo title="Digital Garden" />
-<BaseLayout>
+<BaseLayout
+    title="Digital Garden"
+    description="A collection of interconnected thoughts, ideas, and notes. These
+are living documents that grow and evolve over time."
+>
     <main class="max-w-7xl mx-auto px-8 lg:px-24 py-8 lg:py-16">
         <div class="text-center mb-16">
             <h1
@@ -49,7 +51,7 @@ const tagArray = Array.from(allTags).sort();
                                 return (
                                     <a
                                         href={`/tags/${tag}`}
-                                        class="tag-cloud-item inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-yellow-400/20 to-yellow-300/20 text-yellow-300 border border-yellow-400/30 cursor-pointer hover:from-yellow-400/30 hover:to-yellow-300/30 transition-all duration-200"
+                                        class="tag-cloud-item inline-flex items-center px-4 py-2 rounded-full bg-linear-to-r from-yellow-400/20 to-yellow-300/20 text-yellow-300 border border-yellow-400/30 cursor-pointer hover:from-yellow-400/30 hover:to-yellow-300/30 transition-all duration-200"
                                         data-count={count}
                                     >
                                         {tag}

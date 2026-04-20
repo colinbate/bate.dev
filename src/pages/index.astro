@@ -14,8 +14,10 @@ const gardenEntries = await getCollection("garden");
 const recentGardenEntries = gardenEntries.sort(sortGardenByDate);
 ---
 
-<Seo title="Welcome" />
-<BaseLayout>
+<BaseLayout
+    title="Welcome"
+    description="A peek into the geeky life of Colin Bate, a software developer living in Bermuda."
+>
     <Hero />
     <section class="max-w-7xl mx-auto px-8 lg:px-24 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">

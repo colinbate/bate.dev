@@ -9,6 +9,8 @@ const postsCollection = defineCollection({
       title: z.string(),
       pubDate: z.date(),
       description: z.string(),
+      ogtitle: z.string().optional(),
+      ogdescription: z.string().optional(),
       author: z.string(),
       image: z.object({
         url: z.string().optional(),
@@ -52,7 +54,9 @@ const gardenCollection = defineCollection({
     tags: z.array(z.string()).default([]),
     aliases: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
-    description: z.string().optional(),
+    description: z.string(),
+    ogtitle: z.string().optional(),
+    ogdescription: z.string().optional(),
   }),
 });
 

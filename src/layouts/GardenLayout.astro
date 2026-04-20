@@ -9,7 +9,6 @@ import {
     getBacklinks,
     type GardenEntry,
 } from "../utils/garden-utils.ts";
-import Seo from "$comp/Seo.astro";
 
 export interface Props {
     entry: GardenEntry;
@@ -45,8 +44,14 @@ const updated = entry.data.updated
     : null;
 ---
 
-<Seo title={entry.data.title} description={entry.data.description} />
-<BaseLayout>
+<BaseLayout
+    title={entry.data.title}
+    description={entry.data.description}
+    publishTime={entry.data.created.toISOString()}
+    updateTime={entry.data.updated?.toISOString()}
+    ogtitle={entry.data.ogtitle}
+    ogdescription={entry.data.ogdescription}
+>
     <main class="max-w-7xl mx-auto px-8 lg:px-24 py-8 lg:py-16">
         <!-- Garden Header -->
         <div class="flex items-center justify-between mb-12">

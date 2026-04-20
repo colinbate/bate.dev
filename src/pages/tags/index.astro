@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Seo from "$comp/Seo.astro";
 const allPosts = await getCollection("posts");
 const allProjects = await getCollection("projects");
 const allGarden = await getCollection("garden");
@@ -22,8 +21,10 @@ const tags = postTags
 const pageTitle = "Tag Index";
 ---
 
-<Seo title="Tags" />
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout
+    title="Tags"
+    description="A list of all tags categorizing the content on Bate.dev."
+>
     <section aria-labelledby="header" class="relative overflow-hidden">
         <div class="overflow-hidden relative">
             <div class="px-8 mx-auto max-w-7xl lg:px-24 py-24">

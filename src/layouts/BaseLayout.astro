@@ -2,7 +2,27 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/global/Footer.astro";
 import Navigation from "../components/global/Navigation.astro";
-import "../styles/global.css";
+
+interface Props {
+    title: string;
+    description: string;
+    ogtitle?: string;
+    ogdescription?: string;
+    publishTime?: string;
+    updateTime?: string;
+    img?: ImageMetadata;
+    alt?: string;
+}
+const {
+    title,
+    ogtitle,
+    description,
+    ogdescription,
+    publishTime,
+    updateTime,
+    img,
+    alt,
+} = Astro.props;
 ---
 
 <html
@@ -10,7 +30,16 @@ import "../styles/global.css";
     class="scroll-smooth selection:bg-white/20 selection:text-accent-400"
 >
     <head>
-        <BaseHead />
+        <BaseHead
+            title={title}
+            ogtitle={ogtitle}
+            description={description}
+            img={img}
+            alt={alt}
+            publishTime={publishTime}
+            updateTime={updateTime}
+            ogdescription={ogdescription}
+        />
     </head>
     <body class="bg-black text-white" id="page">
         <Navigation />
