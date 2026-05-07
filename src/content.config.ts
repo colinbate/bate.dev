@@ -64,6 +64,7 @@ const seriesCollection = defineCollection({
   loader: file("src/content/books/series.json"),
   schema: () =>
     z.object({
+      sort: z.number(),
       name: z.string(),
       author: z.string(),
       genre: z.string(),

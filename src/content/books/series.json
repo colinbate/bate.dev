@@ -1,6 +1,7 @@
 [
   {
     "id": "lucas-davenport",
+    "sort": 1,
     "name": "Lucas Davenport",
     "author": "John Sandford",
     "genre": "Crime Thriller",
@@ -12,6 +13,7 @@
   },
   {
     "id": "terminal-list",
+    "sort": 2,
     "name": "Terminal List",
     "author": "Jack Carr",
     "genre": "Political Thriller",
@@ -23,6 +25,7 @@
   },
   {
     "id": "will-robie",
+    "sort": 3,
     "name": "Will Robie",
     "author": "David Baldacci",
     "genre": "Thriller",
@@ -34,6 +37,7 @@
   },
   {
     "id": "orphan-x",
+    "sort": 4,
     "name": "Orphan X",
     "author": "Gregg Hurwitz",
     "genre": "Thriller",
@@ -45,6 +49,7 @@
   },
   {
     "id": "gray-man",
+    "sort": 5,
     "name": "Gray Man",
     "author": "Mark Greaney",
     "genre": "Spy Thriller",
@@ -56,6 +61,7 @@
   },
   {
     "id": "project-eden",
+    "sort": 6,
     "name": "Project Eden",
     "author": "Brett Battles",
     "genre": "Thriller",
@@ -67,6 +73,7 @@
   },
   {
     "id": "oregon-files",
+    "sort": 7,
     "name": "Oregon Files",
     "author": "Clive Cussler",
     "genre": "Adventure Thriller",
@@ -78,6 +85,7 @@
   },
   {
     "id": "sigma-force",
+    "sort": 8,
     "name": "Sigma Force",
     "author": "James Rollins",
     "genre": "Adventure Thriller",
@@ -89,6 +97,7 @@
   },
   {
     "id": "chess-team",
+    "sort": 9,
     "name": "Chess Team",
     "author": "Jeremy Robinson",
     "genre": "Adventure Thriller",
@@ -100,6 +109,7 @@
   },
   {
     "id": "the-order-of-the-sanguines",
+    "sort": 10,
     "name": "The Order of the Sanguines",
     "author": "James Rollins & Rebecca Cantrell",
     "genre": "Supernatural Thriller",
@@ -111,6 +121,7 @@
   },
   {
     "id": "deathless",
+    "sort": 11,
     "name": "Deathless",
     "author": "Chris Fox",
     "genre": "Urban Science Fantasy",
@@ -122,6 +133,7 @@
   },
   {
     "id": "arise",
+    "sort": 12,
     "name": "Arise",
     "author": "Jez Cajiao",
     "genre": "LitRPG",
@@ -133,6 +145,7 @@
   },
   {
     "id": "dungeon-crawler-carl",
+    "sort": 13,
     "name": "Dungeon Crawler Carl",
     "author": "Matt Dinniman",
     "genre": "LitRPG",
@@ -144,6 +157,7 @@
   },
   {
     "id": "the-good-guys",
+    "sort": 14,
     "name": "The Good Guys",
     "author": "Eric Ugland",
     "genre": "LitRPG",
@@ -155,6 +169,7 @@
   },
   {
     "id": "the-completionist-chronicles",
+    "sort": 15,
     "name": "The Completionist Chronicles",
     "author": "Dakota Krout",
     "genre": "LitRPG",
@@ -166,6 +181,7 @@
   },
   {
     "id": "the-way-of-the-shaman",
+    "sort": 16,
     "name": "The Way of the Shaman",
     "author": "Vasily Mahanenko",
     "genre": "LitRPG",
@@ -177,6 +193,7 @@
   },
   {
     "id": "the-system-apocalypse",
+    "sort": 17,
     "name": "The System Apocalypse",
     "author": "Tao Wong",
     "genre": "LitRPG",
@@ -188,6 +205,7 @@
   },
   {
     "id": "dimensional-dungeon-cores",
+    "sort": 18,
     "name": "Dimensional Dungeon Cores",
     "author": "Jonathan Brooks",
     "genre": "LitRPG",
@@ -199,6 +217,7 @@
   },
   {
     "id": "viridian-gate-online",
+    "sort": 19,
     "name": "Viridian Gate Online",
     "author": "James Hunter",
     "genre": "LitRPG",
@@ -210,6 +229,7 @@
   },
   {
     "id": "necrotic-apocalypse",
+    "sort": 20,
     "name": "Necrotic Apocalypse",
     "author": "David Petrie",
     "genre": "LitRPG",
@@ -221,6 +241,7 @@
   },
   {
     "id": "magic-2-0",
+    "sort": 21,
     "name": "Magic 2.0",
     "author": "Scott Meyer",
     "genre": "Fantasy",
@@ -232,6 +253,7 @@
   },
   {
     "id": "caverns-and-creatures",
+    "sort": 22,
     "name": "Caverns and Creatures",
     "author": "Robert Bevan",
     "genre": "Comedy Fantasy",
@@ -243,6 +265,7 @@
   },
   {
     "id": "spells-swords-and-stealth",
+    "sort": 23,
     "name": "Spells, Swords and Stealth",
     "author": "Drew Hayes",
     "genre": "Fantasy",
@@ -254,6 +277,7 @@
   },
   {
     "id": "cradle",
+    "sort": 24,
     "name": "Cradle",
     "author": "Will Wight",
     "genre": "Progression Fantasy",
@@ -265,6 +289,7 @@
   },
   {
     "id": "warformed-stormweaver",
+    "sort": 25,
     "name": "Warformed: Stormweaver",
     "author": "Bryce O'Connor & Luke Chmilenko",
     "genre": "Fantasy",
@@ -276,6 +301,7 @@
   },
   {
     "id": "the-superpowereds",
+    "sort": 26,
     "name": "The Superpowereds",
     "author": "Drew Hayes",
     "genre": "Superhero",
@@ -287,6 +313,7 @@
   },
   {
     "id": "clockwork-chimera",
+    "sort": 27,
     "name": "Clockwork Chimera",
     "author": "Scott Baron",
     "genre": "Science Fiction",
@@ -298,6 +325,7 @@
   },
   {
     "id": "the-murderbot-diaries",
+    "sort": 28,
     "name": "The Murderbot Diaries",
     "author": "Martha Wells",
     "genre": "Science Fiction",
@@ -309,6 +337,7 @@
   },
   {
     "id": "bobiverse",
+    "sort": 29,
     "name": "Bobiverse",
     "author": "Dennis E. Taylor",
     "genre": "Science Fiction",
@@ -320,6 +349,7 @@
   },
   {
     "id": "odyssey-one",
+    "sort": 30,
     "name": "Odyssey One",
     "author": "Evan Currie",
     "genre": "Science Fiction",

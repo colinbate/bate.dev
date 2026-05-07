@@ -3,7 +3,7 @@ import AuthorGenre from "$comp/global/AuthorGenre.astro";
 import { getCollection } from "astro:content";
 
 const series = await getCollection("series");
-let shown = series;
+let shown = series.sort((a, b) => a.data.sort - b.data.sort);
 ---
 
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 non-prose mt-16">
