@@ -1,0 +1,440 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Replace this with your saved Google Maps link if you prefer.
+const googleMapsUrl = "https://maps.app.goo.gl/RhmabFKMB8joCKwS7";
+
+// Set CONTACT_NUMBER, including the country code, in the build environment.
+// The contact card stays hidden when the variable is unavailable.
+const phoneNumber = import.meta.env.CONTACT_NUMBER?.trim() ?? "";
+const phoneHref = phoneNumber.replace(/[^\d+]/g, "");
+const phoneDigits = phoneNumber.replace(/\D/g, "");
+---
+
+<BaseLayout
+    title="Find Colin"
+    description="Directions to Colin's office at New Venture House."
+>
+    <main aria-labelledby="page-title" class="relative overflow-hidden">
+        <div class="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:pt-28">
+            <header class="max-w-4xl">
+                <p
+                    class="text-sm font-semibold uppercase tracking-[0.2em] text-accent-400"
+                >
+                    Office directions
+                </p>
+                <h1
+                    id="page-title"
+                    class="mt-4 text-5xl font-bold tracking-tighter text-white lg:text-8xl"
+                >
+                    How to find me.
+                </h1>
+                <p class="mt-8 max-w-2xl text-lg text-white/70 lg:text-xl">
+                    My office is in New Venture House at 3 Mill Creek Road. The
+                    front entrance is the normal way in; the back entrance is an
+                    alternative when high tides make the front approach
+                    difficult.
+                </p>
+            </header>
+
+            <section aria-labelledby="location-heading" class="mt-16 lg:mt-24">
+                <div class="max-w-3xl">
+                    <h2
+                        id="location-heading"
+                        class="text-3xl font-semibold tracking-tight text-white lg:text-4xl"
+                    >
+                        Getting there
+                    </h2>
+                    <p class="mt-4 text-lg text-white/70">
+                        New Venture House sits between Mill Creek Road and Mill
+                        Reach Lane. These are the two most straightforward ways
+                        to approach it from town.
+                    </p>
+                </div>
+
+                <div class="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-8">
+                    <article
+                        class="rounded-2xl border border-white/10 bg-zinc-900/50 p-6 lg:p-8"
+                    >
+                        <p
+                            class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-400"
+                        >
+                            Route one
+                        </p>
+                        <h3 class="mt-2 text-2xl font-semibold text-white">
+                            From Front Street
+                        </h3>
+                        <ol
+                            class="mt-5 list-decimal space-y-3 pl-5 text-white/70 marker:font-semibold marker:text-accent-400"
+                        >
+                            <li>
+                                Head west along Front Street. It becomes Pitts
+                                Bay Road as you leave Hamilton.
+                            </li>
+                            <li>
+                                Continue past the Hamilton Princess, then follow
+                                Pitts Bay Road beyond the Serpentine Road and
+                                Fairylands Road junction.
+                            </li>
+                            <li>
+                                Mill Reach Lane is the first left after that
+                                junction. For the normal front entrance,
+                                continue past the BGA warehouse and take the
+                                following left onto Mill Creek Road.
+                            </li>
+                        </ol>
+                    </article>
+
+                    <article
+                        class="rounded-2xl border border-white/10 bg-zinc-900/50 p-6 lg:p-8"
+                    >
+                        <p
+                            class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-400"
+                        >
+                            Route two
+                        </p>
+                        <h3 class="mt-2 text-2xl font-semibold text-white">
+                            Via St. John&rsquo;s Road
+                        </h3>
+                        <ol
+                            class="mt-5 list-decimal space-y-3 pl-5 text-white/70 marker:font-semibold marker:text-accent-400"
+                        >
+                            <li>
+                                Make your way onto St. John&rsquo;s Road and
+                                follow it west past Berkeley Road, Auto
+                                Solutions, and the gas station.
+                            </li>
+                            <li>
+                                At the roundabout, turn left downhill onto Pitts
+                                Bay Road.
+                            </li>
+                            <li>
+                                Pass Canal Lane, which is the first right. Mill
+                                Creek Road is the second right and leads to the
+                                normal front entrance. For the back entrance,
+                                continue past the BGA warehouse and take the
+                                next right onto Mill Reach Lane.
+                            </li>
+                        </ol>
+                    </article>
+                </div>
+
+                <div
+                    class="mt-6 flex flex-col gap-3 rounded-2xl border border-accent-400/20 bg-accent-400/5 px-5 py-4 text-sm sm:flex-row sm:items-center sm:gap-8"
+                >
+                    <p class="text-white/70">
+                        <strong class="font-semibold text-white"
+                            >Normal access:</strong
+                        >{" "}
+                        Mill Creek Road
+                    </p>
+                    <p class="text-white/70">
+                        <strong class="font-semibold text-white"
+                            >Flood alternative:
+                        </strong>{" "}
+                        Mill Reach Lane
+                    </p>
+                </div>
+
+                <figure class="mt-10">
+                    <button
+                        type="button"
+                        class="group block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                        data-lightbox-trigger
+                        data-src="/img/find/map.webp"
+                        data-alt="Annotated satellite map showing the front and back entrances to New Venture House and the section of Mill Creek Road that floods at high tide"
+                        data-caption="The front and back approaches to New Venture House."
+                        aria-label="Expand the annotated location map"
+                    >
+                        <img
+                            src="/img/find/map.webp"
+                            alt="Annotated satellite map showing the front and back entrances to New Venture House and the section of Mill Creek Road that floods at high tide"
+                            width="2191"
+                            height="1753"
+                            class="w-full transition duration-300 group-hover:scale-[1.01] group-hover:opacity-90"
+                        />
+                    </button>
+                    <figcaption
+                        class="flex flex-col gap-2 px-1 pt-4 text-sm text-white/50 sm:flex-row sm:items-baseline sm:justify-between"
+                    >
+                        <span
+                            >Click the map to see the annotations full size.</span
+                        >
+                        <a
+                            href={googleMapsUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            class="font-medium text-accent-400 underline decoration-accent-400/40 underline-offset-4 hover:text-accent-300"
+                        >
+                            Open the address in Google Maps <span
+                                aria-hidden="true">&nearr;</span
+                            >
+                        </a>
+                    </figcaption>
+                </figure>
+            </section>
+
+            <section aria-labelledby="entrances-heading" class="mt-16 lg:mt-24">
+                <div class="max-w-2xl">
+                    <h2
+                        id="entrances-heading"
+                        class="text-3xl font-semibold tracking-tight text-white lg:text-4xl"
+                    >
+                        Which entrance should I use?
+                    </h2>
+                    <p class="mt-4 text-lg text-white/70">
+                        Use the front entrance unless the road is flooded. In
+                        late summer and fall, high tides sometimes cover the
+                        section of Mill Creek Road outside the front entrance.
+                        If that is happening when you arrive, come around to the
+                        back via Mill Reach Lane instead.
+                    </p>
+                </div>
+
+                <div class="entrance-grid mt-14 grid lg:grid-cols-2">
+                    <article class="entrance-card">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <h3 class="text-2xl font-semibold text-white">
+                                Front entrance
+                            </h3>
+                            <span
+                                class="rounded-full bg-accent-400 px-3 py-1 text-xs font-bold uppercase tracking-wider text-black"
+                            >
+                                Normal access
+                            </span>
+                        </div>
+                        <div>
+                            <p class="text-white/70">
+                                Enter the car park from Mill Creek Road. The
+                                office entrance is the door on the right-hand
+                                side of the glass frontage.
+                            </p>
+                            <p class="mt-4 text-white/70">
+                                Outside business hours there should be plenty of
+                                parking. Park in any of the central bays. Bike
+                                parking is up in front of the entrance door.
+                            </p>
+                        </div>
+                        <figure class="mt-8">
+                            <button
+                                type="button"
+                                class="group block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                                data-lightbox-trigger
+                                data-src="/img/find/front-entrance.webp"
+                                data-alt="Front of New Venture House with the office entrance marked beside the glass frontage"
+                                data-caption="The front entrance from the Mill Creek Road car park."
+                                aria-label="Expand the front entrance photo"
+                            >
+                                <img
+                                    src="/img/find/front-entrance.webp"
+                                    alt="Front of New Venture House with the office entrance marked beside the glass frontage"
+                                    width="1428"
+                                    height="1071"
+                                    loading="lazy"
+                                    class="aspect-4/3 w-full object-cover transition duration-300 group-hover:scale-[1.01] group-hover:opacity-90"
+                                />
+                            </button>
+                            <figcaption class="px-1 pt-3 text-sm text-white/50">
+                                The usual entrance. Click the image to enlarge
+                                it.
+                            </figcaption>
+                        </figure>
+                    </article>
+
+                    <article class="entrance-card">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <h3 class="text-2xl font-semibold text-white">
+                                Back entrance
+                            </h3>
+                            <span
+                                class="rounded-full border border-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/70"
+                            >
+                                Flood alternative
+                            </span>
+                        </div>
+                        <div>
+                            <p class="text-white/70">
+                                Approach from Mill Reach Lane and turn into the
+                                back of New Venture House. The image marks where
+                                to leave bikes, where to park cars, and which
+                                door to use.
+                            </p>
+                            <p class="mt-4 text-white/70">
+                                Outside business hours parking should be okay.
+                                There are three car parking spots (where the
+                                black and gray cars are in the image), but the
+                                lines can be a bit tough to make out.
+                            </p>
+                        </div>
+                        <figure class="mt-8">
+                            <button
+                                type="button"
+                                class="group block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                                data-lightbox-trigger
+                                data-src="/img/find/back-entrance.webp"
+                                data-alt="Back of New Venture House with the entrance, bicycle area, and car parking area marked"
+                                data-caption="The back entrance from Mill Reach Lane."
+                                aria-label="Expand the back entrance photo"
+                            >
+                                <img
+                                    src="/img/find/back-entrance.webp"
+                                    alt="Back of New Venture House with the entrance, bicycle area, and car parking area marked"
+                                    width="1428"
+                                    height="1071"
+                                    loading="lazy"
+                                    class="aspect-4/3 w-full object-cover transition duration-300 group-hover:scale-[1.01] group-hover:opacity-90"
+                                />
+                            </button>
+                            <figcaption class="px-1 pt-3 text-sm text-white/50">
+                                Use this entrance when Mill Creek Road is
+                                flooded. Click the image to enlarge it.
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+            </section>
+
+            {
+                phoneNumber && (
+                    <aside class="mt-20 rounded-2xl border border-accent-400/30 bg-accent-400/10 p-6 lg:mt-28 lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-8">
+                        <div>
+                            <h2 class="text-2xl font-semibold text-white">
+                                Need a hand finding me?
+                            </h2>
+                            <p class="mt-2 text-white/70">
+                                Call, text, iMessage, or reach me on WhatsApp.
+                            </p>
+                            <p class="mt-1  text-sm text-accent-300">
+                                {phoneNumber}
+                            </p>
+                        </div>
+                        <div class="mt-5 flex flex-col sm:flex-row flex-wrap gap-3 lg:mt-0">
+                            <a
+                                href={`tel:${phoneHref}`}
+                                class="inline-flex justify-center items-center rounded-full bg-accent-400 px-5 py-3 font-semibold text-black hover:bg-accent-300"
+                            >
+                                Call me
+                            </a>
+                            <a
+                                href={`sms:${phoneHref}`}
+                                class="inline-flex justify-center items-center rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-accent-300 hover:text-accent-300"
+                            >
+                                Send a message
+                            </a>
+                            <a
+                                href={`https://wa.me/${phoneDigits}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                class="inline-flex justify-center items-center rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-accent-300 hover:text-accent-300"
+                            >
+                                WhatsApp
+                            </a>
+                        </div>
+                    </aside>
+                )
+            }
+        </div>
+    </main>
+
+    <dialog
+        id="image-lightbox"
+        class="m-auto h-full max-h-none w-full max-w-none items-center justify-center overflow-hidden bg-transparent p-4 text-white sm:p-8"
+        aria-labelledby="lightbox-caption"
+    >
+        <button
+            type="button"
+            data-lightbox-close
+            class="fixed right-4 top-4 z-10 grid size-10 place-items-center rounded-full bg-black/80 text-2xl leading-none text-white ring-1 ring-white/20 hover:bg-zinc-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400 sm:right-6 sm:top-6"
+            aria-label="Close expanded image"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <figure class="flex max-h-full max-w-full flex-col items-center gap-3">
+            <img
+                data-lightbox-image
+                alt=""
+                class="max-h-[calc(100dvh-6rem)] max-w-full rounded-lg object-contain shadow-2xl"
+            />
+            <figcaption
+                id="lightbox-caption"
+                data-lightbox-caption
+                class="text-center text-sm text-white/70"
+            >
+            </figcaption>
+        </figure>
+    </dialog>
+</BaseLayout>
+
+<script>
+    const lightbox =
+        document.querySelector<HTMLDialogElement>("#image-lightbox");
+    const lightboxImage = lightbox?.querySelector<HTMLImageElement>(
+        "[data-lightbox-image]",
+    );
+    const lightboxCaption = lightbox?.querySelector<HTMLElement>(
+        "[data-lightbox-caption]",
+    );
+    const closeButton = lightbox?.querySelector<HTMLButtonElement>(
+        "[data-lightbox-close]",
+    );
+
+    document
+        .querySelectorAll<HTMLButtonElement>("[data-lightbox-trigger]")
+        .forEach((trigger) => {
+            trigger.addEventListener("click", () => {
+                if (!lightbox || !lightboxImage || !lightboxCaption) return;
+
+                lightboxImage.src = trigger.dataset.src ?? "";
+                lightboxImage.alt = trigger.dataset.alt ?? "";
+                lightboxCaption.textContent = trigger.dataset.caption ?? "";
+                lightbox.showModal();
+            });
+        });
+
+    closeButton?.addEventListener("click", () => lightbox?.close());
+    lightbox?.addEventListener("click", (event) => {
+        if (event.target === lightbox) lightbox.close();
+    });
+</script>
+
+<style>
+    .entrance-grid {
+        gap: 3rem;
+    }
+
+    @media (min-width: 64rem) {
+        @supports (grid-template-rows: subgrid) {
+            .entrance-grid {
+                column-gap: 2rem;
+                row-gap: 1rem;
+            }
+
+            .entrance-card {
+                display: grid;
+                grid-row: span 3;
+                grid-template-rows: subgrid;
+                row-gap: 1rem;
+            }
+
+            .entrance-card > p,
+            .entrance-card > figure {
+                margin-top: 0;
+            }
+
+            .entrance-card > figure {
+                padding-top: 1rem;
+            }
+        }
+    }
+
+    #image-lightbox[open] {
+        display: flex;
+        border: 0;
+        background: #18181b;
+    }
+
+    #image-lightbox::backdrop {
+        background: rgb(0 0 0 / 0.75);
+        backdrop-filter: blur(4px);
+    }
+</style>

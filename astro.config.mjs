@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import svelte from "@astrojs/svelte";
 import sitemap from "@astrojs/sitemap";
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 import remarkWikiLink from "@braindb/remark-wiki-link";
@@ -12,6 +13,7 @@ await gardenDB.init();
 
 export default defineConfig({
   markdown: {
+    processor: unified(),
     drafts: true,
     shikiConfig: { theme: "css-variables" },
     remarkPlugins: [
