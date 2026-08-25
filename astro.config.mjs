@@ -66,6 +66,12 @@ export default defineConfig({
   site: "https://bate.dev",
   integrations: [mdx(), svelte(), sitemap() /*, compress({ SVG: false })*/],
   vite: {
+    oxc: {
+      jsx: {
+        runtime: "automatic",
+        importSource: "satori/jsx",
+      },
+    },
     plugins: [tailwindcss()],
   },
 });
