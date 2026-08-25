@@ -1,7 +1,7 @@
 +++
 title = "Hardcover"
 slug = "hardcover"
-created = 2025-08-25
+created = 2026-08-25
 tags = ["books", "app"]
 aliases = ["Hardcover.app"]
 description = "An alternative to Goodreads that I actually like."
