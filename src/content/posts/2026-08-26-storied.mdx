@@ -1,0 +1,54 @@
++++
+title = "Storied"
+slug = "storied"
+author = "Colin Bate"
+description = "Storied is a tool I created to help manage a book club. Focused on discussions and session management."
+pubDate = 2026-08-26T16:00:00Z
+tags = [ "books", "dev", "tools", "cloudflare", "svelte" ]
+
+[image]
+local = "./2026-08-26-storied.avif"
+alt = "The word Storied with a logo of chat bubbles containing a book, all in a circle within a cozy library scene."
++++
+
+Back in March, [I wrote about a book club](/posts/book-club) that I had started here in Bermuda. I posted that a couple of days after our first session, which was mostly an introduction—both to some of the people who would attend and to finding our footing with the format and interactions we might have as part of the club.
+
+At the time, I mentioned that I had created a mailing list. That was true, and a few people who attended that first session joined it. I sent a message or two to encourage engagement outside the physical meetup. There was some activity, but not much, and that was fine. I just found that both the tool I was using and the interaction model made it slightly awkward for people to participate.
+
+I had already created a public site to list information about the book club, its theme, and so on. I had wanted to create an application to guide the conversation: a forum or discussion space that would let us socialize or discuss books outside the monthly meeting. At first, I balked at the idea of creating my own, since it felt like reinventing the wheel. But I realized that is kind of my thing.
+
+So I decided to build an app with AI's help, which is how things go these days. I did not want to spend forever working on it; I wanted to get something up and running as a proof of concept fairly quickly. That is how [Storied](https://storied.bate.dev/) came to be.
+
+It started out mostly as a forum, with threads and posts as you would expect. It was fairly simple, but it quickly grew into something a little more than that. I added new features over time, including a better mobile experience and easier login.
+
+I had originally had some notion of being able to capture books and authors mentioned through their Goodreads links. Storied would fetch information about those things and link them to the threads, building up context around some of these conversations. Eventually, I added series as well.
+
+Then I decided I wanted to make the sessions more prominent and have Storied manage the themes and information I would ultimately present on the public site. Storied grew into something that essentially powers the different sessions that show up there.
+
+I added member profiles, allowing people to add reviews or notes to books, and the ability to link books to sessions—listing out the ones we discussed while meeting in person. I added search, announcements, email notifications, genres people can use to tag things, and RSVP integration through the public site. Eventually, I added private messages and image support.
+
+I started having issues with Goodreads URLs, so I began using [Hardcover](/garden/hardcover/) URLs as well. Those are now the preferred option because Goodreads does not always allow Storied to retrieve information from its site.
+
+Over time, it became a fuller-featured tool. Plenty of things could still be added or improved, and sometimes the interaction model feels a little awkward. But we have been using the threads to communicate between sessions. Certainly not everyone participates, but several members have at least checked it out.
+
+It provides a good record of the books and other topics discussed, which anyone can use as a reference. It is gated behind a login if you want access to the discussions. I have approved some people who have not attended sessions, but for the most part it is limited to the group that meets.
+
+The codebase I have created and curated over the last several months has always been publicly [available on GitHub](https://github.com/colinbate/storied/). Still, I haven't really done anything to advertise it outside the book club itself. So I decided to create a [small marketing page](https://storied.bate.dev/), again with the assistance of AI—which is fairly obvious if you look at it. Still, it was nice because it took the features that are there and put a bit of a marketing spin on them. I published the page, and I plan to make the app more generic so others can install and use it.
+
+Right now, a lot of things are baked in specifically for our group. I've consolidated the branding into a single file. However, a few configurations and other details are still specific to the Cloudflare hosting setup I am using.
+
+I could take a few approaches, such as creating generic, templated versions of those files and forking my specific instance from a more general copy. I am not ready to do that yet, as things are still changing. I want to add more features and functionality before separating the two.
+
+One hurdle to broader use is that our book club is theme-based. We do not assign specific books, so the application is geared around themes and multiple books linked to a particular session, including a list of starter books and similar resources. You could obviously set a single book as the starter book for a session and have one official assigned book instead.
+
+We don't have a voting mechanism, which would be useful for book clubs that vote on their next book. I don't know whether those clubs vote in person when they meet, prefer to vote ahead of time, or want tooling for it. I have built simple voting tools before, and having something built in would help clubs with that kind of interaction.
+
+That is probably the main thing missing compared with other book club tools. Some tools also provide recommendations, and that is another option, but it's a future nice-to-have and not on my short list.
+
+[Take a look at the site](https://storied.bate.dev/). I know managing a book club is not something most people do, so it is a pretty niche application. Setting up your own tooling and community around it is even more niche. But I found the tools I had been using awkward, and I know some other groups use Goodreads. Goodreads seems to get worse every day, so I didn't want to go down that path. Since I could create my own tool, this felt like a natural choice.
+
+I am glad I did it. I'll keep tinkering with it as our needs change, but for the most part I am happy with it. I do need to improve the "after session" experience when I create the new session and add a bunch of books. Some parts of the administrative process are a bit clunky. Still, since it is mostly my own once-a-month interaction, it is lower priority.
+
+I would be interested to [hear any thoughts or comments](mailto:storied@bate.dev). If you are interested in using the tool, I'd be happy to give a tour or help you get it set up. And if people have suggestions for changes or alterations, I would be happy to consider them.
+
+In any case, happy reading.
