@@ -18,9 +18,7 @@ const phoneDigits = phoneNumber.replace(/\D/g, "");
     <main aria-labelledby="page-title" class="relative overflow-hidden">
         <div class="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:pt-28">
             <header class="max-w-4xl">
-                <p
-                    class="text-sm font-semibold uppercase tracking-[0.2em] text-accent-400"
-                >
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">
                     Office directions
                 </p>
                 <h1
@@ -30,10 +28,10 @@ const phoneDigits = phoneNumber.replace(/\D/g, "");
                     How to find me.
                 </h1>
                 <p class="mt-8 max-w-2xl text-lg text-white/70 lg:text-xl">
-                    My office is in New Venture House at 3 Mill Creek Road. The
-                    front entrance is the normal way in; the back entrance is an
-                    alternative when high tides make the front approach
-                    difficult.
+                    My office is in New Venture House at 3 Mill Creek Road.
+                    Third floor. The front entrance is the normal way in; the
+                    back entrance is an alternative when high tides make the
+                    front approach difficult.
                 </p>
             </header>
 
@@ -53,20 +51,14 @@ const phoneDigits = phoneNumber.replace(/\D/g, "");
                 </div>
 
                 <div class="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-8">
-                    <article
-                        class="rounded-2xl border border-white/10 bg-zinc-900/50 p-6 lg:p-8"
-                    >
-                        <p
-                            class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-400"
-                        >
+                    <article class="rounded-2xl border border-white/10 bg-zinc-900/50 p-6 lg:p-8">
+                        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-400">
                             Route one
                         </p>
                         <h3 class="mt-2 text-2xl font-semibold text-white">
                             From Front Street
                         </h3>
-                        <ol
-                            class="mt-5 list-decimal space-y-3 pl-5 text-white/70 marker:font-semibold marker:text-accent-400"
-                        >
+                        <ol class="mt-5 list-decimal space-y-3 pl-5 text-white/70 marker:font-semibold marker:text-accent-400">
                             <li>
                                 Head west along Front Street. It becomes Pitts
                                 Bay Road as you leave Hamilton.
@@ -85,20 +77,14 @@ const phoneDigits = phoneNumber.replace(/\D/g, "");
                         </ol>
                     </article>
 
-                    <article
-                        class="rounded-2xl border border-white/10 bg-zinc-900/50 p-6 lg:p-8"
-                    >
-                        <p
-                            class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-400"
-                        >
+                    <article class="rounded-2xl border border-white/10 bg-zinc-900/50 p-6 lg:p-8">
+                        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-400">
                             Route two
                         </p>
                         <h3 class="mt-2 text-2xl font-semibold text-white">
                             Via St. John&rsquo;s Road
                         </h3>
-                        <ol
-                            class="mt-5 list-decimal space-y-3 pl-5 text-white/70 marker:font-semibold marker:text-accent-400"
-                        >
+                        <ol class="mt-5 list-decimal space-y-3 pl-5 text-white/70 marker:font-semibold marker:text-accent-400">
                             <li>
                                 Make your way onto St. John&rsquo;s Road and
                                 follow it west past Berkeley Road, Auto
@@ -119,18 +105,16 @@ const phoneDigits = phoneNumber.replace(/\D/g, "");
                     </article>
                 </div>
 
-                <div
-                    class="mt-6 flex flex-col gap-3 rounded-2xl border border-accent-400/20 bg-accent-400/5 px-5 py-4 text-sm sm:flex-row sm:items-center sm:gap-8"
-                >
+                <div class="mt-6 flex flex-col gap-3 rounded-2xl border border-accent-400/20 bg-accent-400/5 px-5 py-4 text-sm sm:flex-row sm:items-center sm:gap-8">
                     <p class="text-white/70">
-                        <strong class="font-semibold text-white"
-                            >Normal access:</strong
-                        >{" "}
+                        <strong class="font-semibold text-white">
+                            Normal access:
+                        </strong>{" "}
                         Mill Creek Road
                     </p>
                     <p class="text-white/70">
-                        <strong class="font-semibold text-white"
-                            >Flood alternative:
+                        <strong class="font-semibold text-white">
+                            Flood alternative:
                         </strong>{" "}
                         Mill Reach Lane
                     </p>
@@ -154,21 +138,18 @@ const phoneDigits = phoneNumber.replace(/\D/g, "");
                             class="w-full transition duration-300 group-hover:scale-[1.01] group-hover:opacity-90"
                         />
                     </button>
-                    <figcaption
-                        class="flex flex-col gap-2 px-1 pt-4 text-sm text-white/50 sm:flex-row sm:items-baseline sm:justify-between"
-                    >
-                        <span
-                            >Click the map to see the annotations full size.</span
-                        >
+                    <figcaption class="flex flex-col gap-2 px-1 pt-4 text-sm text-white/50 sm:flex-row sm:items-baseline sm:justify-between">
+                        <span>
+                            Click the map to see the annotations full size.
+                        </span>
                         <a
                             href={googleMapsUrl}
                             target="_blank"
                             rel="noreferrer"
                             class="font-medium text-accent-400 underline decoration-accent-400/40 underline-offset-4 hover:text-accent-300"
                         >
-                            Open the address in Google Maps <span
-                                aria-hidden="true">&nearr;</span
-                            >
+                            Open the address in Google Maps{" "}
+                            <span aria-hidden="true">&nearr;</span>
                         </a>
                     </figcaption>
                 </figure>
@@ -197,9 +178,7 @@ const phoneDigits = phoneNumber.replace(/\D/g, "");
                             <h3 class="text-2xl font-semibold text-white">
                                 Front entrance
                             </h3>
-                            <span
-                                class="rounded-full bg-accent-400 px-3 py-1 text-xs font-bold uppercase tracking-wider text-black"
-                            >
+                            <span class="rounded-full bg-accent-400 px-3 py-1 text-xs font-bold uppercase tracking-wider text-black">
                                 Normal access
                             </span>
                         </div>
@@ -246,9 +225,7 @@ const phoneDigits = phoneNumber.replace(/\D/g, "");
                             <h3 class="text-2xl font-semibold text-white">
                                 Back entrance
                             </h3>
-                            <span
-                                class="rounded-full border border-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/70"
-                            >
+                            <span class="rounded-full border border-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/70">
                                 Flood alternative
                             </span>
                         </div>
@@ -294,45 +271,43 @@ const phoneDigits = phoneNumber.replace(/\D/g, "");
                 </div>
             </section>
 
-            {
-                phoneNumber && (
-                    <aside class="mt-20 rounded-2xl border border-accent-400/30 bg-accent-400/10 p-6 lg:mt-28 lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-8">
-                        <div>
-                            <h2 class="text-2xl font-semibold text-white">
-                                Need a hand finding me?
-                            </h2>
-                            <p class="mt-2 text-white/70">
-                                Call, text, iMessage, or reach me on WhatsApp.
-                            </p>
-                            <p class="mt-1  text-sm text-accent-300">
-                                {phoneNumber}
-                            </p>
-                        </div>
-                        <div class="mt-5 flex flex-col sm:flex-row flex-wrap gap-3 lg:mt-0">
-                            <a
-                                href={`tel:${phoneHref}`}
-                                class="inline-flex justify-center items-center rounded-full bg-accent-400 px-5 py-3 font-semibold text-black hover:bg-accent-300"
-                            >
-                                Call me
-                            </a>
-                            <a
-                                href={`sms:${phoneHref}`}
-                                class="inline-flex justify-center items-center rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-accent-300 hover:text-accent-300"
-                            >
-                                Send a message
-                            </a>
-                            <a
-                                href={`https://wa.me/${phoneDigits}`}
-                                target="_blank"
-                                rel="noreferrer"
-                                class="inline-flex justify-center items-center rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-accent-300 hover:text-accent-300"
-                            >
-                                WhatsApp
-                            </a>
-                        </div>
-                    </aside>
-                )
-            }
+            {phoneNumber && (
+                <aside class="mt-20 rounded-2xl border border-accent-400/30 bg-accent-400/10 p-6 lg:mt-28 lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-8">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-white">
+                            Need a hand finding me?
+                        </h2>
+                        <p class="mt-2 text-white/70">
+                            Call, text, iMessage, or reach me on WhatsApp.
+                        </p>
+                        <p class="mt-1 text-sm text-accent-300">
+                            {phoneNumber}
+                        </p>
+                    </div>
+                    <div class="mt-5 flex flex-col sm:flex-row flex-wrap gap-3 lg:mt-0">
+                        <a
+                            href={`tel:${phoneHref}`}
+                            class="inline-flex justify-center items-center rounded-full bg-accent-400 px-5 py-3 font-semibold text-black hover:bg-accent-300"
+                        >
+                            Call me
+                        </a>
+                        <a
+                            href={`sms:${phoneHref}`}
+                            class="inline-flex justify-center items-center rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-accent-300 hover:text-accent-300"
+                        >
+                            Send a message
+                        </a>
+                        <a
+                            href={`https://wa.me/${phoneDigits}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            class="inline-flex justify-center items-center rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-accent-300 hover:text-accent-300"
+                        >
+                            WhatsApp
+                        </a>
+                    </div>
+                </aside>
+            )}
         </div>
     </main>
 
@@ -359,8 +334,7 @@ const phoneDigits = phoneNumber.replace(/\D/g, "");
                 id="lightbox-caption"
                 data-lightbox-caption
                 class="text-center text-sm text-white/70"
-            >
-            </figcaption>
+            ></figcaption>
         </figure>
     </dialog>
 </BaseLayout>
